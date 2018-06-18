@@ -39,9 +39,8 @@ export async function queryChat(activeLiveChatId) {
   }
 }
 //YoutubeAPI.textMessageInsert
-export async function sendChatMessageWithYoutubeAPI(activeLiveChatId, messageText) {
+export async function sendChatMessageWithYoutubeAPI(activeLiveChatId, messageText, access_token) {
   try {
-    console.log('sendChatMessageWithYoutubeAPI', activeLiveChatId, messageText)
     const messageSnippet = {
       liveChatId: activeLiveChatId,
       type: 'textMessageEvent',
@@ -56,7 +55,7 @@ export async function sendChatMessageWithYoutubeAPI(activeLiveChatId, messageTex
       params: {
         part: 'snippet',
         alt: 'json',
-        key: GOOGLE_KEY,
+        access_token: access_token,
       }
     })
     console.log('sendChatMessageWithYoutubeAPI press', liveStreamMessageInsertResponse)

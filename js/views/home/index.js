@@ -6,13 +6,13 @@ import { observer, inject } from 'mobx-react/native'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import MostStreamedTab from './MostStreamedTab'
 
-@inject('homeViewStore', 'chatStore') @observer
+@inject('authStore', 'homeViewStore', 'chatStore') @observer
 class Home extends Component {
   constructor(props) {
     super(props)
   }
   render() {
-    const { homeViewStore, chatStore } = this.props
+    const { authStore, homeViewStore, chatStore } = this.props
     console.log('render home', homeViewStore)
     return (
       <View style={styles.container}>
@@ -21,6 +21,7 @@ class Home extends Component {
         initialPage={1}
       >
         <MostStreamedTab
+          authStore={authStore}
           homeViewStore={homeViewStore}
           chatStore={chatStore}
           tabLabel="MOST_STREAMED_TAB"

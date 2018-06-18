@@ -21,7 +21,7 @@ class ChatView extends Component {
   }
   render() {
     console.log('cChatView props messages: ', this.props.homeViewStore.messages)
-    const { chatStore, homeViewStore } = this.props
+    const { authStore, chatStore, homeViewStore } = this.props
     const { messages } = homeViewStore
     return (
       <View style={styles.chatContainer} >
@@ -43,7 +43,7 @@ class ChatView extends Component {
               onChangeText={(messageText) => chatStore.setMessageBoxInputValue(messageText)}
             />
             <View style={styles.inputContainerFooterRow} >
-              <ChatButton onPress={() => sendChatMessageWithYoutubeAPI(homeViewStore.view.activeLiveChatId, chatStore.messageBoxInputValue)} />
+              <ChatButton onPress={() => sendChatMessageWithYoutubeAPI(homeViewStore.view.activeLiveChatId, chatStore.messageBoxInputValue, authStore.user.accessToken)} />
             </View>
           </View>
         </View>

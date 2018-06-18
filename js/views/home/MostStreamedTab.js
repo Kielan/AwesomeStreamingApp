@@ -15,14 +15,14 @@ class MostStreamedTab extends Component {
     console.log('sendChat')
   }
   render() {
-    const { homeViewStore, chatStore } = this.props
+    const { authStore, homeViewStore, chatStore } = this.props
     return (
       <View style={styles.viewContainer}>
         <View style={styles.hOneContainer}><Text style={styles.text}>Most Streamed</Text></View>
         <View style={styles.viewBody}>
         { homeViewStore.view.viewLoaded === true && <Image source={{ uri: homeViewStore.view.mainThumbnailURL }} style={styles.caption}>
           </Image> }
-        { homeViewStore.view.viewLoaded === true && <ChatView homeViewStore={homeViewStore} chatStore={chatStore} /> }
+        { homeViewStore.view.viewLoaded === true && <ChatView authStore={authStore} homeViewStore={homeViewStore} chatStore={chatStore} /> }
         </View>
       </View>
     )
