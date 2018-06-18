@@ -15,7 +15,7 @@ export default class Setup extends Component {
     try {
       const configPlatform = {
           clientID: clientId,
-          scopes: ['profile', 'email', 'https://www.googleapis.com/auth/youtube.readonly',
+          scopes: ['profile', 'email',
          'https://www.googleapis.com/auth/youtube',
          'https://www.googleapis.com/auth/youtube.force-ssl']
       }

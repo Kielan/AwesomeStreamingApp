@@ -52,7 +52,7 @@ export async function sendChatMessageWithYoutubeAPI(activeLiveChatId, messageTex
     let liveStreamMessageInsertResponse = await $http({
       method: 'POST',
       url: YOUTUBE_API_URL+'liveChat/messages/',
-      data: JSON.stringify({snippet: messageSnippet}),
+      data: {snippet: messageSnippet},//JSON.stringify(
       params: {
         part: 'snippet',
         alt: 'json',
