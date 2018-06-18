@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>705349112654-a1cinahpr540nbp3upcs3b37jm52upc1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.705349112654-a1cinahpr540nbp3upcs3b37jm52upc1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBckf3sw8mtaaJcWh5ZqfGHXTNyYzcfl8U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>705349112654</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.kielan.androidDemo</string>
+	<key>PROJECT_ID</key>
+	<string>androiddemo-7c4d4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>androiddemo-7c4d4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:705349112654:ios:b733807a477952ee</string>
+	<key>DATABASE_URL</key>
+	<string>https://androiddemo-7c4d4.firebaseio.com</string>
+</dict>
+</plist>

@@ -46,6 +46,7 @@
 		84D20A4E20D61C6900A00D48 /* RNGoogleSignInBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D20A4A20D61C6900A00D48 /* RNGoogleSignInBridge.m */; };
 		84D20A4F20D61C6900A00D48 /* RNGoogleSignInEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D20A4B20D61C6900A00D48 /* RNGoogleSignInEvents.swift */; };
 		84D20A5020D61C6900A00D48 /* RNGoogleSignInEventsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D20A4C20D61C6900A00D48 /* RNGoogleSignInEventsBridge.m */; };
+		84D20A5320D757BB00A00D48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84D20A5220D757BB00A00D48 /* GoogleService-Info.plist */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
 
@@ -362,6 +363,7 @@
 		84D20A4B20D61C6900A00D48 /* RNGoogleSignInEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNGoogleSignInEvents.swift; sourceTree = "<group>"; };
 		84D20A4C20D61C6900A00D48 /* RNGoogleSignInEventsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignInEventsBridge.m; sourceTree = "<group>"; };
 		84D20A5120D7030F00A00D48 /* AwesomeStreamingApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AwesomeStreamingApp-Bridging-Header.h"; path = "AwesomeStreamingApp/AwesomeStreamingApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		84D20A5220D757BB00A00D48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -603,6 +605,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				84D20A5220D757BB00A00D48 /* GoogleService-Info.plist */,
 				84D20A4720D61C6900A00D48 /* RNGoogleSignIn */,
 				13B07FAE1A68108700A75B9A /* AwesomeStreamingApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1093,6 +1096,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				84D20A5320D757BB00A00D48 /* GoogleService-Info.plist in Resources */,
 				84D20A4020D619BD00A00D48 /* GoogleSignIn.bundle in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
