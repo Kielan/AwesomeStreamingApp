@@ -8,6 +8,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view'
 import { LINE_GRAPH_DATA } from '../../constants'
 import MostStreamedTab from './MostStreamedTab'
 import AnalyticsTab from './AnalyticsTab'
+import DashHeadTabBar from './DashHeadTabBar'
 
 @inject('authStore', 'dataViewStore', 'homeViewStore', 'chatStore') @observer
 class Home extends Component {
@@ -21,6 +22,7 @@ class Home extends Component {
     return (
       <View style={styles.container}>
       <ScrollableTabView
+        renderTabBar={() => <DashHeadTabBar />}
         style={{backgroundColor: '#E8E8E8'}}
         initialPage={1}
       >

@@ -13,7 +13,7 @@ export const YOUTUBE_API_URL = `https://www.googleapis.com/youtube/v3/`
 export const GOOGLE_KEY = `AIzaSyApA9jYGrEZ2pLzaI8svf59luLHXMCNmZk`
 
 export const COLORS = {
-  ORANGE: "#fca54e",
+  ORANGE: "#ffcc80",
   SALMON: "#f75d4c",
   BLACK: "black",
 }

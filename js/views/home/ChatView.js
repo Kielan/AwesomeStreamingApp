@@ -97,8 +97,6 @@ const styles = {
   chatContainer: {
     flex: 1,
     width: WINDOW_CONST.width,
-    height: 500,
-    maxHeight: 500,
     backgroundColor: COLORS.ORANGE,
     flexDirection: 'column',
     alignItems: 'center',
@@ -120,8 +118,8 @@ const styles = {
     minWidth: WINDOW_CONST.width,
     backgroundColor: COLORS.ORANGE,
     justifyContent: 'center',
-    marginBottom: 10,
-    paddingBottom: 8,
+    alignSelf: 'flex-end',
+    paddingBottom: 15,
   },
   inputContent: {
     borderColor: COLORS.BLACK,
@@ -154,10 +152,9 @@ const styles = {
     alignSelf: 'flex-start',
   },
   messageList: {
-    backgroundColor:'transparent',
+    backgroundColor: COLORS.SALMON,
     overflow: 'visible',
-    borderColor: COLORS.BLACK,
-    borderWidth: 2,
+  //  borderWidth: 2,
 //    height: 300,
 //    maxHeight: 300,
     width: WINDOW_CONST.width,

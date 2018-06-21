@@ -12,7 +12,7 @@ import Home from './views/home'
 const scenes = Actions.create(
   <Scene key="root">
     <Scene key="login" component={Login} hideNavBar initial={!(AuthStore.isLoggedIn)} />
-    <Scene key="home" component={Home} />
+    <Scene key="home" drawer={true} hideNavBar={true} headerMode={"float"} component={Home} />
   </Scene>
 )
 const styles = {

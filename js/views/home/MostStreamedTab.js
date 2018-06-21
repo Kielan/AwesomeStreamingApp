@@ -4,7 +4,7 @@ import {
   View, Text, TouchableOpacity, Image, LayoutAnimation,
 } from 'react-native'
 import { observer } from 'mobx-react/native'
-import { COLORS } from '../../constants'
+import { COLORS, WINDOW_CONST } from '../../constants'
 import ChatView from './ChatView'
 
 @observer
@@ -37,15 +37,10 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: COLORS.ORANGE,
-    paddingBottom: 20,
-    marginBottom: 20,
-    bottom: 20,
+    height: WINDOW_CONST.height,
   },
   viewBody: {
-    height: 740,
-    minHeight: 740,
-    maxHeight: 740,
-    paddingBottom: 20,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
