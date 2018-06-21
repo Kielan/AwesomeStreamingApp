@@ -1,3 +1,4 @@
+'use strict'
 import { observable, action } from 'mobx'
 import {default as $http} from 'axios'
 import { GOOGLE_KEY, YOUTUBE_API_URL } from '../constants'

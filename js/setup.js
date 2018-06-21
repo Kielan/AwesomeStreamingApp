@@ -1,7 +1,9 @@
+'use strict'
 import React, { Component } from 'react'
 import { observer, Provider } from 'mobx-react/native'
 import AppRouter from './AppRouter'
 import AuthStore from './stores/AuthStore'
+import DataViewStore from './stores/DataViewStore'
 import HomeViewStore from './stores/HomeViewStore'
 import ChatStore from './stores/ChatStore'
 import GoogleSignIn from 'react-native-google-sign-in'
@@ -34,6 +36,7 @@ export default class Setup extends Component {
     return (
       <Provider
         authStore={AuthStore}
+        dataViewStore={DataViewStore}
         homeViewStore={HomeViewStore}
         chatStore={ChatStore}
       >
@@ -42,6 +45,3 @@ export default class Setup extends Component {
     )
   }
 }
-/*
-
-*/

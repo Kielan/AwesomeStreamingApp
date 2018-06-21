@@ -1,3 +1,4 @@
+'use strict'
 import { observable, computed } from 'mobx'
 import { Actions } from 'react-native-router-flux'
 import GoogleSignIn from 'react-native-google-sign-in'

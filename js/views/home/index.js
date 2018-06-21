@@ -1,18 +1,22 @@
+'use strict'
 import React, { Component } from 'react'
 import {
   View, Text, TouchableOpacity, Image,
 } from 'react-native'
 import { observer, inject } from 'mobx-react/native'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
+import { LINE_GRAPH_DATA } from '../../constants'
 import MostStreamedTab from './MostStreamedTab'
+import AnalyticsTab from './AnalyticsTab'
 
-@inject('authStore', 'homeViewStore', 'chatStore') @observer
+@inject('authStore', 'dataViewStore', 'homeViewStore', 'chatStore') @observer
 class Home extends Component {
   constructor(props) {
     super(props)
   }
   render() {
-    const { authStore, homeViewStore, chatStore } = this.props
+    const { authStore, dataViewStore, homeViewStore, chatStore } = this.props
+    const chartData =
     console.log('render home', homeViewStore)
     return (
       <View style={styles.container}>
@@ -25,6 +29,14 @@ class Home extends Component {
           homeViewStore={homeViewStore}
           chatStore={chatStore}
           tabLabel="MOST_STREAMED_TAB"
+        />
+        <AnalyticsTab
+          authStore={authStore}
+          dataViewStore={dataViewStore}
+          homeViewStore={homeViewStore}
+          chatStore={chatStore}
+          data={LINE_GRAPH_DATA}
+          tabLabel="ANALYTICS_TAB"
         />
       </ScrollableTabView>
       </View>

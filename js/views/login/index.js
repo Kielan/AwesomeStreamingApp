@@ -1,8 +1,8 @@
+'use strict'
 import React, { Component } from 'react'
 import {
   View, Text,
 } from 'react-native'
-import { Container, Content, Input, Button, Spinner, Icon } from 'native-base'
 import { GoogleSignInButton } from './buttons'//      <GoogleSigninButton />
 import { observer, inject } from 'mobx-react/native'
 

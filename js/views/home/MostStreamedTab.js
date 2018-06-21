@@ -1,8 +1,9 @@
+'use strict'
 import React, { Component } from 'react'
 import {
-  View, Text, TouchableOpacity, Image,
+  View, Text, TouchableOpacity, Image, LayoutAnimation,
 } from 'react-native'
-import { observer, inject } from 'mobx-react/native'
+import { observer } from 'mobx-react/native'
 import { COLORS } from '../../constants'
 import ChatView from './ChatView'
 
@@ -18,7 +19,6 @@ class MostStreamedTab extends Component {
     const { authStore, homeViewStore, chatStore } = this.props
     return (
       <View style={styles.viewContainer}>
-        <View style={styles.hOneContainer}><Text style={styles.text}>Most Streamed</Text></View>
         <View style={styles.viewBody}>
         { homeViewStore.view.viewLoaded === true && <Image source={{ uri: homeViewStore.view.mainThumbnailURL }} style={styles.caption}>
           </Image> }
@@ -40,9 +40,6 @@ const styles = {
     paddingBottom: 20,
     marginBottom: 20,
     bottom: 20,
-  },
-  hOneContainer: {
-    height: 30,
   },
   viewBody: {
     height: 740,
