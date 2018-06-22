@@ -1,4 +1,4 @@
-This is  a programming challenge/hackathon style react native app using the youtube v3 api for livestreaming and chat inside of a mobile application. Currently Finished with the original sprint/spec at about ~20 hours into the project, I will keep some benchmarkers for features as I continue to build out this demo.
+This is  a programming challenge/hackathon style react native app using the youtube v3 api for livestreaming and chat inside of a mobile application. Currently Finished with the original sprint/spec at about ~16 hours into the project, I will keep some benchmarkers for features as I continue to build out this demo.
 
 To run app
 
@@ -12,7 +12,7 @@ react-native run-ios (android coming soon - soon!)
 - [x] Routing navigation
 - [x] Google signin iOS functionality
 - [ ] Google signin android functionality
-- [ ] Flex box wireframe layout
+- [x] Flex box wireframe layout
 - [ ] Aesthetic fundamental layout (salmon squash theme)
 - [x] Gather Streams from youtube api and find viewcount in schema
 - [x] Query chat for top video
@@ -23,4 +23,4 @@ My only question is regarding the last spec, is creating another interface like 
 - [ ] calculate messages/second
 - [x] line chart
 - [ ] donut chart
-- [ ]
+- [ ] gradient base colors to mix palette for mobile aesthetic theming

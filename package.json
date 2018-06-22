@@ -7,17 +7,18 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "0.17.1",
     "d3": "5.5.0",
+    "jest": "23.1.0",
+    "mobx": "^3.2.2",
+    "mobx-react": "^4.3.3",
+    "mobx-utils": "^5.0.0",
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-google-sign-in": "1.0.16",
     "react-native-router-flux": "^4.0.0-beta.22",
-    "jest": "23.1.0",
-    "react-test-renderer": "16.3.1",
-    "mobx": "^3.2.2",
-    "mobx-react": "^4.3.3",
-    "axios": "0.17.1",
-    "react-native-scrollable-tab-view": "0.8.0"
+    "react-native-scrollable-tab-view": "0.8.0",
+    "react-test-renderer": "16.3.1"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",

@@ -26,14 +26,12 @@ class ChatView extends Component {
     const { messages } = homeViewStore
     return (
       <View style={styles.chatContainer} >
-        <View style={{flex: 1}}>
-          <FlatList
-           style={styles.messageList}
-           data={messages}
-           renderItem={data => <ChatMessage data={data} />}
-           keyExtractor={(item, index) => index.toString()}
-          />
-        </View>
+        <FlatList
+         style={styles.messageList}
+         data={messages}
+         renderItem={data => <ChatMessage data={data} />}
+         keyExtractor={(item, index) => index.toString()}
+        />
         <View style={styles.inputContainer}>
           <View style={styles.inputContent}>
             <ChatInput
@@ -100,18 +98,16 @@ const styles = {
     backgroundColor: COLORS.ORANGE,
     flexDirection: 'column',
     alignItems: 'center',
-    bottom: 2,
-    marginBottom: 2,
-    paddingVertical: 2,
   },
   chatMessageContainer: {
     minHeight: 20,
     height: 20,
     maxHeight: 20,
     flex: 1,
-    backgroundColor: COLORS.ORANGE,
+    backgroundColor: 'transparent',
   },
   inputContainer: {
+    flex: 1,
     height: 90,
     maxHeight: 90,
     minHeight: 90,
@@ -119,7 +115,6 @@ const styles = {
     backgroundColor: COLORS.ORANGE,
     justifyContent: 'center',
     alignSelf: 'flex-end',
-    paddingBottom: 15,
   },
   inputContent: {
     borderColor: COLORS.BLACK,
@@ -152,7 +147,7 @@ const styles = {
     alignSelf: 'flex-start',
   },
   messageList: {
-    backgroundColor: COLORS.SALMON,
+    backgroundColor: COLORS.ORANGE_SECOND,
     overflow: 'visible',
   //  borderWidth: 2,
 //    height: 300,

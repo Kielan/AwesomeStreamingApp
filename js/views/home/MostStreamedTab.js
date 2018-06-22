@@ -49,7 +49,7 @@ const styles = {
     alignSelf: 'center',
   },
   caption: {
-    width: 300,
-    height: 140,
+    width: 320,
+    height: 180,
   }
 }
