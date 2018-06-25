@@ -7,17 +7,47 @@ import { queryChat } from '../services/chatService'
 class HomeViewStore {
   @observable view = {}
   @observable messages = []
+  @observable messagesLowercase = []
   @observable analyticsTab = {
     messagesSearchValue: ''
   }
   @computed get computedChatArchiveQuery() {
-    return this.messages
+    if(!this.analyticsTab.messagesSearchValue) {
+      return this.messages
+    }
+    const newMessages = []
+    if (this.analyticsTab.messagesSearchValue.includes('has:')) {
+      return this.messagesLowercase.filter(item =>
+        {
+          console.log('computed this.messages.filter', item)
+          if (item.displayName.includes(this.analyticsTab.messagesSearchValue)) {
+            return item
+          }
+        }
+      )
+    } else if (this.analyticsTab.messagesSearchValue.includes('from:')) {
+      const searchQuery = this.analyticsTab.messagesSearchValue.substr(6)
+      return this.messagesLowercase.filter(item =>
+        {
+          console.log('computed find by author', item)
+          if (item.displayName.includes(searchQuery)) {
+            return item
+          }
+        }
+      )
+    }
+
   }
   @action setMessages(newMessages) {
     this.messages = newMessages
+    this.messagesLowercase = newMessages.map((message) => {
+      message.messageText = message.messageText.toLowerCase()
+      return message
+    })
   }
-  @action messagesSearch(e) {
-    this.analyticsTab.messagesSearchValue = e.target.value
+  @action.bound messagesSearch(e) {
+    console.log('messagesSearch action', e)
+    this.analyticsTab.messagesSearchValue = e
   }
   gatherLiveStream = async () => {
     try {

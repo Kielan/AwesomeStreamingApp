@@ -37,6 +37,7 @@ export default class AnalyticsTab extends Component {
             style={styles.inputStyle}
             value={homeViewStore.analyticsTab.messagesSearchValue}
             onChangeText={homeViewStore.messagesSearch}
+            autoCapitalize={'none'}
           />
           </View>
         </View>
