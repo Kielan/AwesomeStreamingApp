@@ -11,7 +11,8 @@ export default class ChatMessage extends Component {
   render() {
     return (
       <View key={this.props.key} style={styles.chatMessageContainer}>
-        <Text style={styles.text}>{this.props.data.item.messageText}</Text>
+        <View><Text style={styles.text} >{this.props.data.item.displayName}</Text></View>
+        <View><Text style={styles.text} >{this.props.data.item.messageText}</Text></View>
       </View>
     )
   }
@@ -22,7 +23,7 @@ const styles = {
     flex: 1,
     width: WINDOW_CONST.width,
     backgroundColor: COLORS.ORANGE,
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
   },
   chatMessageContainer: {
@@ -31,6 +32,8 @@ const styles = {
     maxHeight: 20,
     flex: 1,
     backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   text: {
     color: COLORS.BLACK,

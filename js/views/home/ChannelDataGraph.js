@@ -1,6 +1,6 @@
 'use strict'
 import React, { Component } from 'react'
-import { ART, LayoutAnimation, View, } from 'react-native'
+import { ART, LayoutAnimation, View, Text, } from 'react-native'
 import { observer } from 'mobx-react'
 import Morph from 'art/morph/path'
 import * as scale from 'd3-scale'
@@ -148,12 +148,17 @@ export default class ChannelDataGraph extends Component {
       graphWidth,
       graphHeight,
       linePath,
-      ticks,
-      scale,
+//      ticks,
+      scale = {x: {}},
     } = this.state
-//    const {
-//      x: scaleX,
-//    } = scale
+    const ticks = this.state.ticks || []
+    console.log('channeldata render scale', scale)
+    const {
+      x: scaleX,
+    } = scale
+    const tickXFormat = scaleX.tickFormat ? scaleX.tickFormat(null, '%b %d') : 1
+    console.log('channeldata render ticks', ticks, 'scaleX', scaleX)
+
     return (
       <View>
         <Surface width={this.props.width} height={this.props.height}>
@@ -164,7 +169,64 @@ export default class ChannelDataGraph extends Component {
               strokeWidth={1}/>
           </Group>
         </Surface>
+
+        <View key={'ticksX'}>
+          {ticks != 'undefined' && ticks.length > 0 && ticks.map((tick, index) => {
+            const tickStyles = {};
+            tickStyles.width = TickWidth;
+            tickStyles.left = tick.x - (TickWidth / 2);
+            return (
+              <Text key={index} style={[styles.tickLabelX, tickStyles]}>
+                {tickXFormat(new Date(tick.datum.time * 1000))}
+              </Text>
+            );
+          })}
+        </View>
+
+        <View key={'ticksY'} style={styles.ticksYContainer}>
+          {ticks != 'undefined' && ticks.length > 0 && ticks.map((tick, index) => {
+            const value = yAccessor(tick.datum)
+            const tickStyles = {};
+            tickStyles.width = TickWidth;
+            tickStyles.left = tick.x - Math.round(TickWidth * 0.5)
+            tickStyles.top = (tick.y + 2) - Math.round(TickWidth * 0.65)
+            return (
+              <View key={index} style={[styles.tickLabelY, tickStyles]}>
+                <Text style={styles.tickLabelYText}>
+                  {value}&deg;
+                </Text>
+              </View>
+            );
+          })}
+        </View>
+
+
+
       </View>
     )
   }
+}
+
+const styles = {
+  tickLabelX: {
+    position: 'absolute',
+    bottom: 0,
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  ticksYContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  tickLabelY: {
+    position: 'absolute',
+    left: 0,
+    backgroundColor: 'transparent',
+  },
+  tickLabelYText: {
+    fontSize: 12,
+    textAlign: 'center',
+  },
+
 }
