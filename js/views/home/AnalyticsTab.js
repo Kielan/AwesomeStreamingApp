@@ -29,14 +29,16 @@ export default class AnalyticsTab extends Component {
     return (
       <View style={styles.viewContainer}>
         <ChannelDataGraph dataViewStore={dataViewStore} {...graphProps} />
-        <View style={styles.viewInput}>
-        <TextInput
-          placeholder={'placeholder'}
-          autoCorrect={false}
-          style={styles.inputStyle}
-          value={homeViewStore.analyticsTab.messagesSearchValue}
-          onChangeText={homeViewStore.messagesSearch}
-        />
+        <View style={styles.viewInputContainer}>
+          <View style={styles.viewInput}>
+          <TextInput
+            placeholder={'search channel chat history'}
+            autoCorrect={false}
+            style={styles.inputStyle}
+            value={homeViewStore.analyticsTab.messagesSearchValue}
+            onChangeText={homeViewStore.messagesSearch}
+          />
+          </View>
         </View>
         <MessagesResults messages={homeViewStore.computedChatArchiveQuery} filter={homeViewStore.analyticsTab.messagesSearchValue} />
       </View>
@@ -47,16 +49,28 @@ const styles = {
   viewContainer: {
     flex: 1,
     height: WINDOW_CONST.height,
+    backgroundColor: COLORS.ORANGE,
+  },
+  viewInputContainer: {
+    flex: 1,
+    height: 40,
+    minHeight: 40,
+    maxHeight: 40,
+    paddingVertical: 6,
+    paddingHorizontal: 6,
+    backgroundColor: COLORS.ORANGE,
   },
   viewInput: {
     flex: 1,
-    height: 26,
-    minHeight: 26,
-    maxHeight: 26,
+    borderRadius: 25,
   },
   inputStyle: {
     flex: 1,
-    paddingVertical: 2,
-    backgroundColor: 'blue',
+    height: 28,
+    minHeight: 28,
+    maxHeight: 28,
+    paddingHorizontal: 6,
+    backgroundColor: COLORS.ORANGE_SECOND,
+    borderRadius: 25,
   }
 }

@@ -200,7 +200,17 @@ export default class ChannelDataGraph extends Component {
           })}
         </View>
 
-
+        <View key={'ticksYDot'} style={styles.ticksYContainer}>
+          {ticks.map((tick, index) => (
+            <View
+              key={index}
+              style={[styles.ticksYDot, {
+                left: tick.x,
+                top: tick.y,
+              }]}
+            />
+          ))}
+        </View>
 
       </View>
     )
@@ -228,5 +238,11 @@ const styles = {
     fontSize: 12,
     textAlign: 'center',
   },
-
+  ticksYDot: {
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    backgroundColor: 'black',
+    borderRadius: 100,
+  },
 }
