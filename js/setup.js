@@ -1,6 +1,6 @@
 'use strict'
 import React, { Component } from 'react'
-import { observer, Provider } from 'mobx-react/native'
+import { observer, Provider } from 'mobx-react'
 import AppRouter from './AppRouter'
 import AuthStore from './stores/AuthStore'
 import DataViewStore from './stores/DataViewStore'

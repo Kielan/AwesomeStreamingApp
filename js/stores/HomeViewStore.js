@@ -10,7 +10,7 @@ class HomeViewStore {
   @observable analyticsTab = {
     messagesSearchValue: ''
   }
-  @computed get chatArchiveQuery() {
+  @computed get computedChatArchiveQuery() {
     return this.messages
   }
   @action setMessages(newMessages) {

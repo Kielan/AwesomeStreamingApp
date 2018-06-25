@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   View, Text, TouchableOpacity, Image, TextInput,
 } from 'react-native'
-import { observer } from 'mobx-react/native'
+import { observer } from 'mobx-react'
 import { WINDOW_CONST, COLORS } from '../../constants'
 import ChannelDataGraph from './ChannelDataGraph'
 import MessagesResults from './MessagesResults'
@@ -29,6 +29,7 @@ export default class AnalyticsTab extends Component {
     return (
       <View style={styles.viewContainer}>
         <ChannelDataGraph dataViewStore={dataViewStore} {...graphProps} />
+        <View style={styles.viewInput}>
         <TextInput
           placeholder={'placeholder'}
           autoCorrect={false}
@@ -36,7 +37,8 @@ export default class AnalyticsTab extends Component {
           value={homeViewStore.analyticsTab.messagesSearchValue}
           onChangeText={homeViewStore.messagesSearch}
         />
-        <MessagesResults data={homeViewStore.chatArchiveQuery} filter={homeViewStore.analyticsTab.messagesSearchValue} />
+        </View>
+        <MessagesResults messages={homeViewStore.computedChatArchiveQuery} filter={homeViewStore.analyticsTab.messagesSearchValue} />
       </View>
     )
   }
@@ -46,11 +48,14 @@ const styles = {
     flex: 1,
     height: WINDOW_CONST.height,
   },
-  inputStyle: {
+  viewInput: {
     flex: 1,
     height: 26,
     minHeight: 26,
     maxHeight: 26,
+  },
+  inputStyle: {
+    flex: 1,
     paddingVertical: 2,
     backgroundColor: 'blue',
   }

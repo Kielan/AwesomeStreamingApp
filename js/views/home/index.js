@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   View, Text, TouchableOpacity, Image,
 } from 'react-native'
-import { observer, inject } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import { LINE_GRAPH_DATA } from '../../constants'
 import { pollMessagesService } from '../../services/chatService'

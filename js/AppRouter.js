@@ -4,7 +4,7 @@ import {
   View, Text,
 } from 'react-native'
 import { Router, Scene, Actions } from 'react-native-router-flux'
-import { observer, inject } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react'
 import AuthStore from './stores/AuthStore'
 import Login from './views/login'
 import Home from './views/home'

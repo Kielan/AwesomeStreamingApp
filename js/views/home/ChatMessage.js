@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   View, Text, TouchableOpacity, Image, TextInput,
 } from 'react-native'
-import { observer } from 'mobx-react/native'
+import { observer } from 'mobx-react'
 import { WINDOW_CONST, COLORS } from '../../constants'
 
 @observer

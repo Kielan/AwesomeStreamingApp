@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   View, FlatList, Text, TouchableOpacity, Image, TextInput,
 } from 'react-native'
-import { observer, inject } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react'
 import { WINDOW_CONST, COLORS } from '../../constants'
 import { pollMessagesService, sendChatMessageWithYoutubeAPI } from '../../services/chatService'
 import ChatMessage from './ChatMessage'

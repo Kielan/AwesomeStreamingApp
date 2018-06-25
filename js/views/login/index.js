@@ -4,7 +4,7 @@ import {
   View, Text,
 } from 'react-native'
 import { GoogleSignInButton } from './buttons'//      <GoogleSigninButton />
-import { observer, inject } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react'
 
 @inject('authStore') @observer
 class Login extends Component {

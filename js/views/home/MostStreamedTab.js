@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   View, Text, TouchableOpacity, Image, LayoutAnimation,
 } from 'react-native'
-import { observer } from 'mobx-react/native'
+import { observer } from 'mobx-react'
 import { COLORS, WINDOW_CONST } from '../../constants'
 import ChatView from './ChatView'
 

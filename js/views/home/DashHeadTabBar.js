@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   View, Text, Animated, TouchableOpacity,
 } from 'react-native'
-import { observer, inject } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react'
 
 @observer
 export default class DashHeadTabBar extends Component {

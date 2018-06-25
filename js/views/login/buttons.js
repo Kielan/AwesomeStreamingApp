@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native'
-import { observer, inject } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react'
 import AuthStore from '../../stores/AuthStore'
 import HomeViewStore from '../../stores/HomeViewStore'
 

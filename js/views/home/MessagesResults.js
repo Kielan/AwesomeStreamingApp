@@ -3,16 +3,18 @@ import React, { Component } from 'react'
 import {
   View, FlatList,
 } from 'react-native'
-import { observer } from 'mobx-react/native'
+import { observer } from 'mobx-react'
 import { WINDOW_CONST, COLORS } from '../../constants'
 import ChatMessage from './ChatMessage'
 
 @observer
 export default class MessagesResults extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
-    const { data, filter, } = this.props
-    const messages = Array.isArray(data) ? data : []
-    console.log('MessagesResults render() data', data, 'messages', messages)
+    const { messages, filter, } = this.props
+    console.log('MessagesResults render() data', 'messages', messages)
     console.log('MessagesResults render() filter', filter)
     return (
       <View style={styles.chatContainer}>

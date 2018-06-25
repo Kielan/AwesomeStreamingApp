@@ -1,7 +1,7 @@
 'use strict'
 import React, { Component } from 'react'
 import { ART, LayoutAnimation, View, } from 'react-native'
-import { observer } from 'mobx-react/native'
+import { observer } from 'mobx-react'
 import Morph from 'art/morph/path'
 import * as scale from 'd3-scale'
 import * as shape from 'd3-shape'
@@ -33,7 +33,7 @@ export default class ChannelDataGraph extends Component {
   };
   static defaultProps = {
     width: Math.round(WINDOW_CONST.width * 0.9),
-    height: Math.round(WINDOW_CONST.height * 0.5),
+    height: Math.round(WINDOW_CONST.height * 0.4),
   };
   componentDidMount() {
     console.log('channeldatagraph componentDidMount', this.props)
