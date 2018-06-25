@@ -1,5 +1,5 @@
 'use strict'
-import { observable, action } from 'mobx'
+import { observable, computed, action } from 'mobx'
 import {default as $http} from 'axios'
 import { GOOGLE_KEY, YOUTUBE_API_URL } from '../constants'
 import { queryChat } from '../services/chatService'
@@ -7,12 +7,17 @@ import { queryChat } from '../services/chatService'
 class HomeViewStore {
   @observable view = {}
   @observable messages = []
-  @action setMainThumbnail(mainThumbnailURL) {
-    this.view.mainThumbnailURL = mainThumbnailURL
-    this.view.viewLoaded = true
+  @observable analyticsTab = {
+    messagesSearchValue: ''
+  }
+  @computed get chatArchiveQuery() {
+    return this.messages
   }
   @action setMessages(newMessages) {
     this.messages = newMessages
+  }
+  @action messagesSearch(e) {
+    this.analyticsTab.messagesSearchValue = e.target.value
   }
   gatherLiveStream = async () => {
     try {
@@ -66,10 +71,8 @@ class HomeViewStore {
           messageText: item.snippet.textMessageDetails.messageText,
           publishedAt: item.snippet.publishedAt,
         }
-        console.log('getChatMessages => ', item, 'usefulObj', usefulObj)
         return usefulObj
       })
-      console.log('final messages ', messages)
       this.setMessages(messages)
     } catch (err) {
       console.log('could not get messages: ', err)

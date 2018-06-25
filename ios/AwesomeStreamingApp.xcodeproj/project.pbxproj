@@ -38,26 +38,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		84921CBA20DB81C80000278D /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */; };
-		84921CE720DB8ABD0000278D /* ARTGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CBF20DB8ABD0000278D /* ARTGroup.m */; };
-		84921CE820DB8ABD0000278D /* ARTNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CC120DB8ABD0000278D /* ARTNode.m */; };
-		84921CE920DB8ABD0000278D /* ARTRenderable.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CC320DB8ABD0000278D /* ARTRenderable.m */; };
-		84921CEA20DB8ABD0000278D /* ARTSerializablePath.js in Resources */ = {isa = PBXBuildFile; fileRef = 84921CC420DB8ABD0000278D /* ARTSerializablePath.js */; };
-		84921CEB20DB8ABD0000278D /* ARTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CC620DB8ABD0000278D /* ARTShape.m */; };
-		84921CEC20DB8ABD0000278D /* ARTSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CC820DB8ABD0000278D /* ARTSurfaceView.m */; };
-		84921CED20DB8ABD0000278D /* ARTText.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CCA20DB8ABD0000278D /* ARTText.m */; };
-		84921CEE20DB8ABD0000278D /* ARTBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CCE20DB8ABD0000278D /* ARTBrush.m */; };
-		84921CEF20DB8ABD0000278D /* ARTLinearGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CD020DB8ABD0000278D /* ARTLinearGradient.m */; };
-		84921CF020DB8ABD0000278D /* ARTPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CD220DB8ABD0000278D /* ARTPattern.m */; };
-		84921CF120DB8ABD0000278D /* ARTRadialGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CD420DB8ABD0000278D /* ARTRadialGradient.m */; };
-		84921CF220DB8ABD0000278D /* ARTSolidColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CD620DB8ABD0000278D /* ARTSolidColor.m */; };
-		84921CF320DB8ABD0000278D /* RCTConvert+ART.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CD820DB8ABD0000278D /* RCTConvert+ART.m */; };
-		84921CF420DB8ABD0000278D /* ReactNativeART.js in Resources */ = {isa = PBXBuildFile; fileRef = 84921CD920DB8ABD0000278D /* ReactNativeART.js */; };
-		84921CF520DB8ABD0000278D /* ARTGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CDC20DB8ABD0000278D /* ARTGroupManager.m */; };
-		84921CF620DB8ABD0000278D /* ARTNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CDE20DB8ABD0000278D /* ARTNodeManager.m */; };
-		84921CF720DB8ABD0000278D /* ARTRenderableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CE020DB8ABD0000278D /* ARTRenderableManager.m */; };
-		84921CF820DB8ABD0000278D /* ARTShapeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CE220DB8ABD0000278D /* ARTShapeManager.m */; };
-		84921CF920DB8ABD0000278D /* ARTSurfaceViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CE420DB8ABD0000278D /* ARTSurfaceViewManager.m */; };
-		84921CFA20DB8ABD0000278D /* ARTTextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84921CE620DB8ABD0000278D /* ARTTextManager.m */; };
+		84921D8B20DDD2A00000278D /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84921D8820DDC1BF0000278D /* libART.a */; };
 		84D20A4020D619BD00A00D48 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84D20A1820D619BC00A00D48 /* GoogleSignIn.bundle */; };
 		84D20A4120D619BD00A00D48 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D20A3E20D619BC00A00D48 /* GoogleSignIn.framework */; };
 		84D20A4220D619BD00A00D48 /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D20A3F20D619BD00A00D48 /* GoogleSignInDependencies.framework */; };
@@ -338,6 +319,20 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		84921D8720DDC1BF0000278D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84921D8220DDC1BF0000278D /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
+		84921D8920DDC1BF0000278D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84921D8220DDC1BF0000278D /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 323A12871E5F266B004975B8;
+			remoteInfo = "ART-tvOS";
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -373,47 +368,7 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		84921CBC20DB8ABD0000278D /* ARTCGFloatArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTCGFloatArray.h; sourceTree = "<group>"; };
-		84921CBD20DB8ABD0000278D /* ARTContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTContainer.h; sourceTree = "<group>"; };
-		84921CBE20DB8ABD0000278D /* ARTGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTGroup.h; sourceTree = "<group>"; };
-		84921CBF20DB8ABD0000278D /* ARTGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTGroup.m; sourceTree = "<group>"; };
-		84921CC020DB8ABD0000278D /* ARTNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTNode.h; sourceTree = "<group>"; };
-		84921CC120DB8ABD0000278D /* ARTNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTNode.m; sourceTree = "<group>"; };
-		84921CC220DB8ABD0000278D /* ARTRenderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTRenderable.h; sourceTree = "<group>"; };
-		84921CC320DB8ABD0000278D /* ARTRenderable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTRenderable.m; sourceTree = "<group>"; };
-		84921CC420DB8ABD0000278D /* ARTSerializablePath.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ARTSerializablePath.js; sourceTree = "<group>"; };
-		84921CC520DB8ABD0000278D /* ARTShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTShape.h; sourceTree = "<group>"; };
-		84921CC620DB8ABD0000278D /* ARTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTShape.m; sourceTree = "<group>"; };
-		84921CC720DB8ABD0000278D /* ARTSurfaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTSurfaceView.h; sourceTree = "<group>"; };
-		84921CC820DB8ABD0000278D /* ARTSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTSurfaceView.m; sourceTree = "<group>"; };
-		84921CC920DB8ABD0000278D /* ARTText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTText.h; sourceTree = "<group>"; };
-		84921CCA20DB8ABD0000278D /* ARTText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTText.m; sourceTree = "<group>"; };
-		84921CCB20DB8ABD0000278D /* ARTTextFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTTextFrame.h; sourceTree = "<group>"; };
-		84921CCD20DB8ABD0000278D /* ARTBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTBrush.h; sourceTree = "<group>"; };
-		84921CCE20DB8ABD0000278D /* ARTBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTBrush.m; sourceTree = "<group>"; };
-		84921CCF20DB8ABD0000278D /* ARTLinearGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTLinearGradient.h; sourceTree = "<group>"; };
-		84921CD020DB8ABD0000278D /* ARTLinearGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTLinearGradient.m; sourceTree = "<group>"; };
-		84921CD120DB8ABD0000278D /* ARTPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTPattern.h; sourceTree = "<group>"; };
-		84921CD220DB8ABD0000278D /* ARTPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTPattern.m; sourceTree = "<group>"; };
-		84921CD320DB8ABD0000278D /* ARTRadialGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTRadialGradient.h; sourceTree = "<group>"; };
-		84921CD420DB8ABD0000278D /* ARTRadialGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTRadialGradient.m; sourceTree = "<group>"; };
-		84921CD520DB8ABD0000278D /* ARTSolidColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTSolidColor.h; sourceTree = "<group>"; };
-		84921CD620DB8ABD0000278D /* ARTSolidColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTSolidColor.m; sourceTree = "<group>"; };
-		84921CD720DB8ABD0000278D /* RCTConvert+ART.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+ART.h"; sourceTree = "<group>"; };
-		84921CD820DB8ABD0000278D /* RCTConvert+ART.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+ART.m"; sourceTree = "<group>"; };
-		84921CD920DB8ABD0000278D /* ReactNativeART.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ReactNativeART.js; sourceTree = "<group>"; };
-		84921CDB20DB8ABD0000278D /* ARTGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTGroupManager.h; sourceTree = "<group>"; };
-		84921CDC20DB8ABD0000278D /* ARTGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTGroupManager.m; sourceTree = "<group>"; };
-		84921CDD20DB8ABD0000278D /* ARTNodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTNodeManager.h; sourceTree = "<group>"; };
-		84921CDE20DB8ABD0000278D /* ARTNodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTNodeManager.m; sourceTree = "<group>"; };
-		84921CDF20DB8ABD0000278D /* ARTRenderableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTRenderableManager.h; sourceTree = "<group>"; };
-		84921CE020DB8ABD0000278D /* ARTRenderableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTRenderableManager.m; sourceTree = "<group>"; };
-		84921CE120DB8ABD0000278D /* ARTShapeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTShapeManager.h; sourceTree = "<group>"; };
-		84921CE220DB8ABD0000278D /* ARTShapeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTShapeManager.m; sourceTree = "<group>"; };
-		84921CE320DB8ABD0000278D /* ARTSurfaceViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTSurfaceViewManager.h; sourceTree = "<group>"; };
-		84921CE420DB8ABD0000278D /* ARTSurfaceViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTSurfaceViewManager.m; sourceTree = "<group>"; };
-		84921CE520DB8ABD0000278D /* ARTTextManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTTextManager.h; sourceTree = "<group>"; };
-		84921CE620DB8ABD0000278D /* ARTTextManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTTextManager.m; sourceTree = "<group>"; };
+		84921D8220DDC1BF0000278D /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		84D20A1820D619BC00A00D48 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		84D20A3E20D619BC00A00D48 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
 		84D20A3F20D619BD00A00D48 /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
@@ -442,6 +397,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84921D8B20DDD2A00000278D /* libART.a in Frameworks */,
 				84921CBA20DB81C80000278D /* libcxxreact.a in Frameworks */,
 				84D20A4620D61A2100A00D48 /* SystemConfiguration.framework in Frameworks */,
 				84D20A4420D61A1700A00D48 /* SafariServices.framework in Frameworks */,
@@ -640,6 +596,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				84921D8220DDC1BF0000278D /* ART.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -669,7 +626,6 @@
 			isa = PBXGroup;
 			children = (
 				84D20A5220D757BB00A00D48 /* GoogleService-Info.plist */,
-				84921CBB20DB8ABD0000278D /* ART */,
 				84D20A4720D61C6900A00D48 /* RNGoogleSignIn */,
 				13B07FAE1A68108700A75B9A /* AwesomeStreamingApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -693,69 +649,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		84921CBB20DB8ABD0000278D /* ART */ = {
+		84921D8320DDC1BF0000278D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84921CBC20DB8ABD0000278D /* ARTCGFloatArray.h */,
-				84921CBD20DB8ABD0000278D /* ARTContainer.h */,
-				84921CBE20DB8ABD0000278D /* ARTGroup.h */,
-				84921CBF20DB8ABD0000278D /* ARTGroup.m */,
-				84921CC020DB8ABD0000278D /* ARTNode.h */,
-				84921CC120DB8ABD0000278D /* ARTNode.m */,
-				84921CC220DB8ABD0000278D /* ARTRenderable.h */,
-				84921CC320DB8ABD0000278D /* ARTRenderable.m */,
-				84921CC420DB8ABD0000278D /* ARTSerializablePath.js */,
-				84921CC520DB8ABD0000278D /* ARTShape.h */,
-				84921CC620DB8ABD0000278D /* ARTShape.m */,
-				84921CC720DB8ABD0000278D /* ARTSurfaceView.h */,
-				84921CC820DB8ABD0000278D /* ARTSurfaceView.m */,
-				84921CC920DB8ABD0000278D /* ARTText.h */,
-				84921CCA20DB8ABD0000278D /* ARTText.m */,
-				84921CCB20DB8ABD0000278D /* ARTTextFrame.h */,
-				84921CCC20DB8ABD0000278D /* Brushes */,
-				84921CD720DB8ABD0000278D /* RCTConvert+ART.h */,
-				84921CD820DB8ABD0000278D /* RCTConvert+ART.m */,
-				84921CD920DB8ABD0000278D /* ReactNativeART.js */,
-				84921CDA20DB8ABD0000278D /* ViewManagers */,
+				84921D8820DDC1BF0000278D /* libART.a */,
+				84921D8A20DDC1BF0000278D /* libART-tvOS.a */,
 			);
-			name = ART;
-			path = "../node_modules/react-native/Libraries/ART";
-			sourceTree = "<group>";
-		};
-		84921CCC20DB8ABD0000278D /* Brushes */ = {
-			isa = PBXGroup;
-			children = (
-				84921CCD20DB8ABD0000278D /* ARTBrush.h */,
-				84921CCE20DB8ABD0000278D /* ARTBrush.m */,
-				84921CCF20DB8ABD0000278D /* ARTLinearGradient.h */,
-				84921CD020DB8ABD0000278D /* ARTLinearGradient.m */,
-				84921CD120DB8ABD0000278D /* ARTPattern.h */,
-				84921CD220DB8ABD0000278D /* ARTPattern.m */,
-				84921CD320DB8ABD0000278D /* ARTRadialGradient.h */,
-				84921CD420DB8ABD0000278D /* ARTRadialGradient.m */,
-				84921CD520DB8ABD0000278D /* ARTSolidColor.h */,
-				84921CD620DB8ABD0000278D /* ARTSolidColor.m */,
-			);
-			path = Brushes;
-			sourceTree = "<group>";
-		};
-		84921CDA20DB8ABD0000278D /* ViewManagers */ = {
-			isa = PBXGroup;
-			children = (
-				84921CDB20DB8ABD0000278D /* ARTGroupManager.h */,
-				84921CDC20DB8ABD0000278D /* ARTGroupManager.m */,
-				84921CDD20DB8ABD0000278D /* ARTNodeManager.h */,
-				84921CDE20DB8ABD0000278D /* ARTNodeManager.m */,
-				84921CDF20DB8ABD0000278D /* ARTRenderableManager.h */,
-				84921CE020DB8ABD0000278D /* ARTRenderableManager.m */,
-				84921CE120DB8ABD0000278D /* ARTShapeManager.h */,
-				84921CE220DB8ABD0000278D /* ARTShapeManager.m */,
-				84921CE320DB8ABD0000278D /* ARTSurfaceViewManager.h */,
-				84921CE420DB8ABD0000278D /* ARTSurfaceViewManager.m */,
-				84921CE520DB8ABD0000278D /* ARTTextManager.h */,
-				84921CE620DB8ABD0000278D /* ARTTextManager.m */,
-			);
-			path = ViewManagers;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		84D20A4720D61C6900A00D48 /* RNGoogleSignIn */ = {
@@ -894,6 +794,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 84921D8320DDC1BF0000278D /* Products */;
+					ProjectRef = 84921D8220DDC1BF0000278D /* ART.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -1206,6 +1110,20 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		84921D8820DDC1BF0000278D /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = 84921D8720DDC1BF0000278D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		84921D8A20DDC1BF0000278D /* libART-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libART-tvOS.a";
+			remoteRef = 84921D8920DDC1BF0000278D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1230,9 +1148,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				84D20A5320D757BB00A00D48 /* GoogleService-Info.plist in Resources */,
 				84D20A4020D619BD00A00D48 /* GoogleSignIn.bundle in Resources */,
-				84921CF420DB8ABD0000278D /* ReactNativeART.js in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				84921CEA20DB8ABD0000278D /* ARTSerializablePath.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1297,29 +1213,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84921CF920DB8ABD0000278D /* ARTSurfaceViewManager.m in Sources */,
-				84921CF120DB8ABD0000278D /* ARTRadialGradient.m in Sources */,
-				84921CF220DB8ABD0000278D /* ARTSolidColor.m in Sources */,
-				84921CF720DB8ABD0000278D /* ARTRenderableManager.m in Sources */,
-				84921CED20DB8ABD0000278D /* ARTText.m in Sources */,
 				84D20A4D20D61C6900A00D48 /* RNGoogleSignIn.swift in Sources */,
-				84921CEF20DB8ABD0000278D /* ARTLinearGradient.m in Sources */,
-				84921CF020DB8ABD0000278D /* ARTPattern.m in Sources */,
-				84921CF820DB8ABD0000278D /* ARTShapeManager.m in Sources */,
-				84921CE820DB8ABD0000278D /* ARTNode.m in Sources */,
-				84921CF620DB8ABD0000278D /* ARTNodeManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				84D20A5020D61C6900A00D48 /* RNGoogleSignInEventsBridge.m in Sources */,
-				84921CE720DB8ABD0000278D /* ARTGroup.m in Sources */,
-				84921CEB20DB8ABD0000278D /* ARTShape.m in Sources */,
-				84921CEC20DB8ABD0000278D /* ARTSurfaceView.m in Sources */,
 				84D20A4F20D61C6900A00D48 /* RNGoogleSignInEvents.swift in Sources */,
-				84921CF320DB8ABD0000278D /* RCTConvert+ART.m in Sources */,
-				84921CFA20DB8ABD0000278D /* ARTTextManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				84921CF520DB8ABD0000278D /* ARTGroupManager.m in Sources */,
-				84921CE920DB8ABD0000278D /* ARTRenderable.m in Sources */,
-				84921CEE20DB8ABD0000278D /* ARTBrush.m in Sources */,
 				84D20A4E20D61C6900A00D48 /* RNGoogleSignInBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

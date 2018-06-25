@@ -20,9 +20,8 @@ class MostStreamedTab extends Component {
     return (
       <View style={styles.viewContainer}>
         <View style={styles.viewBody}>
-        { homeViewStore.view.viewLoaded === true && <Image source={{ uri: homeViewStore.view.mainThumbnailURL }} style={styles.caption}>
-          </Image> }
-        { homeViewStore.view.viewLoaded === true && <ChatView authStore={authStore} homeViewStore={homeViewStore} chatStore={chatStore} /> }
+        <Image source={{ uri: homeViewStore.view.mainThumbnailURL }} style={styles.caption}></Image>
+        <ChatView authStore={authStore} homeViewStore={homeViewStore} chatStore={chatStore} />
         </View>
       </View>
     )

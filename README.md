@@ -24,3 +24,4 @@ My only question is regarding the last spec, is creating another interface like 
 - [x] line chart
 - [ ] donut chart
 - [ ] gradient base colors to mix palette for mobile aesthetic theming
+- [ ] 3rd party workaround in app managed superchat ;)

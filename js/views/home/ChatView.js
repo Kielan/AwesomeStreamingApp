@@ -6,12 +6,13 @@ import {
 import { observer, inject } from 'mobx-react/native'
 import { WINDOW_CONST, COLORS } from '../../constants'
 import { pollMessagesService, sendChatMessageWithYoutubeAPI } from '../../services/chatService'
+import ChatMessage from './ChatMessage'
 
 @observer
 class ChatView extends Component {
   constructor(props) {
-    super(props);
-  }
+    super(props)
+  }/*
   async componentDidMount() {
     try {
       this.interval = pollMessagesService(this.props.homeViewStore.view.activeLiveChatId)
@@ -19,7 +20,7 @@ class ChatView extends Component {
     } catch (err) {
       console.log('chatview err: ', err)
     }
-  }
+  }*/
   render() {
     console.log('cChatView props messages: ', this.props.homeViewStore.messages)
     const { authStore, chatStore, homeViewStore } = this.props
@@ -66,15 +67,7 @@ class ChatButton extends Component {
     )
   }
 }
-class ChatMessage extends Component {
-  render() {
-    return (
-      <View key={this.props.key} style={styles.chatMessageContainer}>
-        <Text style={styles.text}>{this.props.data.item.messageText}</Text>
-      </View>
-    )
-  }
-}
+
 const ChatInput = ({ value, onChangeText, placeholder, secureTextEntry }) => {
   return (
     <View style={styles.inputViewStyle}>

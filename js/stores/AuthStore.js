@@ -18,7 +18,6 @@ class AuthStore {
   }
   async signInWithGoogle() {
     try {
-      console.log('google signin')
       const user = await GoogleSignIn.signInPromise()
       console.log('google signin', user, 'check this.props for authStore', this.props)
       this.setUser(user)

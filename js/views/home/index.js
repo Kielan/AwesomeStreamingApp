@@ -6,6 +6,7 @@ import {
 import { observer, inject } from 'mobx-react/native'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import { LINE_GRAPH_DATA } from '../../constants'
+import { pollMessagesService } from '../../services/chatService'
 import MostStreamedTab from './MostStreamedTab'
 import AnalyticsTab from './AnalyticsTab'
 import DashHeadTabBar from './DashHeadTabBar'
@@ -15,13 +16,20 @@ class Home extends Component {
   constructor(props) {
     super(props)
   }
+  async componentDidMount() {
+    try {
+      this.interval = pollMessagesService(this.props.homeViewStore.view.activeLiveChatId)
+      .then(messages => this.props.homeViewStore.setMessages(messages))
+    } catch (err) {
+      console.log('chatview err: ', err)
+    }
+  }
   render() {
     const { authStore, dataViewStore, homeViewStore, chatStore } = this.props
-    const chartData =
     console.log('render home', homeViewStore)
     return (
       <View style={styles.container}>
-      <ScrollableTabView
+      { homeViewStore.view.viewLoaded === true && <ScrollableTabView
         renderTabBar={() => <DashHeadTabBar />}
         style={{backgroundColor: '#E8E8E8'}}
         initialPage={1}
@@ -40,7 +48,7 @@ class Home extends Component {
           data={LINE_GRAPH_DATA}
           tabLabel="ANALYTICS_TAB"
         />
-      </ScrollableTabView>
+      </ScrollableTabView> }
       </View>
     )
   }

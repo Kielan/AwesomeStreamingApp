@@ -35,11 +35,13 @@ export default class ChannelDataGraph extends Component {
     width: Math.round(WINDOW_CONST.width * 0.9),
     height: Math.round(WINDOW_CONST.height * 0.5),
   };
-  componentWillMount() {
+  componentDidMount() {
+    console.log('channeldatagraph componentDidMount', this.props)
     this.computeNextState(this.props)
   }
   componentWillReceiveProps(nextProps) {
-    this.computeNextState(nextProps)
+    console.log('channeldatagraph componentwillrecieveprops', nextProps)
+//    this.computeNextState(nextProps)
   }
   computeNextState(nextProps) {
     const {
@@ -67,14 +69,16 @@ export default class ChannelDataGraph extends Component {
       ticks: lineGraph.ticks,
       scale: lineGraph.scale,
     })
+    console.log('computeNextState', this.state, 'linegraph', lineGraph)
 
     // The first time this function is hit we need to set the initial
     // this.previousGraph value.
     if (!this.previousGraph) {
+      console.log('computeNextState !this.previousGraph', lineGraph)
       this.previousGraph = lineGraph
     }
-
-//    if (this.props !== nextProps) {
+    console.log('err happening computenextstate this.props !== nextProps', this.props, 'and', nextProps)
+    if (this.props !== nextProps) {
       const pathFrom = this.previousGraph.path
       const pathTo = lineGraph.path
 
@@ -99,16 +103,18 @@ export default class ChannelDataGraph extends Component {
         ),
       }, () => {
         // Kick off our animations delcaratively and set dirty state for lifecycle check
+        console.log('setState animate()', this.props)
         this.animate()
       })
       this.previousGraph = lineGraph
-//    }
+    }
   }
   animate(start) {
     this.animating = requestAnimationFrame((timestamp) => {
       if (!start) {
         start = timestamp
       }
+      console.log('setState animate() start', start)
       // Get the delta on how far long in our animation we are.
       const delta = (timestamp - start) / AnimationDurationMs
       console.log('channeldata first delta', delta)
@@ -150,7 +156,7 @@ export default class ChannelDataGraph extends Component {
 //    } = scale
     return (
       <View>
-        <Surface width={this.props.width} height={this.props.width}>
+        <Surface width={this.props.width} height={this.props.height}>
           <Group x={100} y={0}>
             <Shape
               d={linePath}
