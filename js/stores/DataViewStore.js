@@ -16,9 +16,15 @@ class DataViewStore {
     graphHeight: 0,
     linePath: '',
   }
-  @action setStore(value) {
-    this.state = { ...value }
+  @observable graphData = {
+    messagesActivity: [],
+    activityPeak: 0,
+    activityFloor: 0,
   }
+  @action setStore(key, value) {
+    this[key] = { ...value }
+  }
+
 }
 
 export default new DataViewStore()

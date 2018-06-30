@@ -52,6 +52,8 @@ export default class ChannelDataGraph extends Component {
       yAccessor,
     } = nextProps
     const fullPaddingSize = PaddingSize * 2
+    console.log('computeNextState b4 err', data, 'xAccessor', xAccessor, 'yAccessor', yAccessor)
+
     const graphWidth = width - fullPaddingSize
     const graphHeight = height - fullPaddingSize
     const lineGraph = graphUtils.createLineGraph({
@@ -61,6 +63,7 @@ export default class ChannelDataGraph extends Component {
       width: graphWidth,
       height: graphHeight,
     })
+    console.log('computeNextState b4 err lineGraph', lineGraph)
 
     this.setState({
       graphWidth,
@@ -104,7 +107,7 @@ export default class ChannelDataGraph extends Component {
       }, () => {
         // Kick off our animations delcaratively and set dirty state for lifecycle check
         console.log('setState animate()', this.props)
-        this.animate()
+//        this.animate()
       })
       this.previousGraph = lineGraph
     }
@@ -148,19 +151,19 @@ export default class ChannelDataGraph extends Component {
       graphWidth,
       graphHeight,
       linePath,
-//      ticks,
-      scale = {x: {}},
+      ticks,
+      scale = {},
     } = this.state
-    const ticks = this.state.ticks || []
     console.log('channeldata render scale', scale)
     const {
-      x: scaleX,
+      x: scaleX = {},
     } = scale
-    const tickXFormat = scaleX.tickFormat ? scaleX.tickFormat(null, '%b %d') : 1
+    const tickXFormat = (scale != 'undefined' && scaleX.tickFormat) ? scaleX.tickFormat(4) : 1
     console.log('channeldata render ticks', ticks, 'scaleX', scaleX)
 
     return (
       <View>
+      {scale != 'undefined' && scaleX.tickFormat && <View>
         <Surface width={this.props.width} height={this.props.height}>
           <Group x={100} y={0}>
             <Shape
@@ -177,7 +180,7 @@ export default class ChannelDataGraph extends Component {
             tickStyles.left = tick.x - (TickWidth / 2);
             return (
               <Text key={index} style={[styles.tickLabelX, tickStyles]}>
-                {tickXFormat(new Date(tick.datum.time * 1000))}
+                {scale != 'undefined' && scaleX.tickFormat && tickXFormat(new Date(tick.datum.time * 1000))}
               </Text>
             );
           })}
@@ -211,6 +214,7 @@ export default class ChannelDataGraph extends Component {
             />
           ))}
         </View>
+        </View>}
 
       </View>
     )

@@ -4,9 +4,11 @@ import {
   View, Text, TouchableOpacity, Image,
 } from 'react-native'
 import { observer, inject } from 'mobx-react'
+import { toJS } from 'mobx'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import { LINE_GRAPH_DATA } from '../../constants'
-import { pollMessagesService } from '../../services/chatService'
+import { pollMessagesService, liveChatStepThroughPageTokens } from '../../services/chatService'
+import { createLiveStreamChannelActivityOverview } from '../../services/d3Service'
 import MostStreamedTab from './MostStreamedTab'
 import AnalyticsTab from './AnalyticsTab'
 import DashHeadTabBar from './DashHeadTabBar'
@@ -18,15 +20,26 @@ class Home extends Component {
   }
   async componentDidMount() {
     try {
+      const { homeViewStore } = this.props
+      console.log('homeWillReceiveProps...')
+      let wholePageProps = await liveChatStepThroughPageTokens(this.props.homeViewStore.view.activeLiveChatId)
+      console.log('homeWillReceiveProps: ', wholePageProps)
       this.interval = pollMessagesService(this.props.homeViewStore.view.activeLiveChatId)
       .then(messages => this.props.homeViewStore.setMessages(messages))
+
+      if (Array.isArray(toJS(this.props.homeViewStore.messagesLowercase)) && toJS(this.props.homeViewStore.messagesLowercase).length ) {
+        //      console.log('render home', createLiveStreamChannelActivityOverview(toJS(homeViewStore.messagesLowercase)))
+        let activityOveviewData = createLiveStreamChannelActivityOverview(toJS(this.props.homeViewStore.messagesLowercase))
+        this.props.dataViewStore.setStore('graphData', activityOveviewData)
+
+      }
     } catch (err) {
-      console.log('chatview err: ', err)
+      console.log('homedidmount err: ', err)
     }
   }
   render() {
     const { authStore, dataViewStore, homeViewStore, chatStore } = this.props
-    console.log('render home', homeViewStore)
+
     return (
       <View style={styles.container}>
       { homeViewStore.view.viewLoaded === true && <ScrollableTabView
@@ -45,7 +58,7 @@ class Home extends Component {
           dataViewStore={dataViewStore}
           homeViewStore={homeViewStore}
           chatStore={chatStore}
-          data={LINE_GRAPH_DATA}
+          data={dataViewStore.graphData}
           tabLabel="ANALYTICS_TAB"
         />
       </ScrollableTabView> }

@@ -1,8 +1,10 @@
 'use strict'
-import { observable, computed, action } from 'mobx'
+import { observable, computed, action, reaction, toJS } from 'mobx'
 import {default as $http} from 'axios'
 import { GOOGLE_KEY, YOUTUBE_API_URL } from '../constants'
 import { queryChat } from '../services/chatService'
+import { createLiveStreamChannelActivityOverview } from '../services/d3Service'
+import DataViewStore from './DataViewStore'
 
 class HomeViewStore {
   @observable view = {}
@@ -11,6 +13,14 @@ class HomeViewStore {
   @observable analyticsTab = {
     messagesSearchValue: ''
   }
+  reaction1 = reaction(
+      () => this.messagesLowercase.length,
+      length => {
+        console.log('react to length change reaction1')
+        let activityOveviewData = createLiveStreamChannelActivityOverview(toJS(this.messagesLowercase))
+        DataViewStore.setStore('graphData', activityOveviewData)
+      }
+  )
   @computed get computedChatArchiveQuery() {
     if(!this.analyticsTab.messagesSearchValue) {
       return this.messages
@@ -99,7 +109,7 @@ class HomeViewStore {
           displayName: item.authorDetails.displayName,
           profileImageUrl: item.authorDetails.profileImageUrl,
           messageText: item.snippet.textMessageDetails.messageText,
-          publishedAt: item.snippet.publishedAt,
+          publishedAtSinceEpoch: item.snippet.publishedAt,
         }
         return usefulObj
       })

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import {
   View, Text, TouchableOpacity, Image, TextInput,
 } from 'react-native'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { WINDOW_CONST, COLORS } from '../../constants'
 import ChannelDataGraph from './ChannelDataGraph'
@@ -16,19 +17,18 @@ export default class AnalyticsTab extends Component {
   }
   render() {
     const { authStore, dataViewStore, homeViewStore, chatStore, data: graphData, } = this.props
-    const showMax = true
     const graphProps = {}
-          graphProps.data = graphData.daily.data
-          graphProps.xAccessor = d => new Date(d.time * 1000)
-          if (showMax) {
-            graphProps.yAccessor = d => d.temperatureMax
-          } else {
-            graphProps.yAccessor = d => d.temperatureMin
-          }
+          graphProps.data = toJS(dataViewStore.graphData.messagesActivity)//graphData.daily.data
+          graphProps.xAccessor = d => d.intervalPeriod
+          graphProps.yAccessor = d => d.messagesPerInterval//d.temperatureMax
 
     return (
       <View style={styles.viewContainer}>
-        <ChannelDataGraph dataViewStore={dataViewStore} {...graphProps} />
+        {
+          typeof dataViewStore.graphData.messagesActivity !== 'undefined' &&
+          dataViewStore.graphData.messagesActivity.length > 0 &&
+          <ChannelDataGraph dataViewStore={dataViewStore} {...graphProps} />
+        }
         <View style={styles.viewInputContainer}>
           <View style={styles.viewInput}>
           <TextInput
