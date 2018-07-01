@@ -33,7 +33,7 @@ export default class ChannelDataGraph extends Component {
   };
   static defaultProps = {
     width: Math.round(WINDOW_CONST.width * 0.9),
-    height: Math.round(WINDOW_CONST.height * 0.4),
+    height: Math.round(WINDOW_CONST.height * 0.45),
   };
   componentDidMount() {
     console.log('channeldatagraph componentDidMount', this.props)
@@ -158,14 +158,23 @@ export default class ChannelDataGraph extends Component {
     const {
       x: scaleX = {},
     } = scale
-    const tickXFormat = (scale != 'undefined' && scaleX.tickFormat) ? scaleX.tickFormat(4) : 1
+    const tickXFormat = scale != 'undefined' && scaleX.tickFormat && scaleX.tickFormat(5) || null
     console.log('channeldata render ticks', ticks, 'scaleX', scaleX)
 
     return (
-      <View>
-      {scale != 'undefined' && scaleX.tickFormat && <View>
+      <View style={styles.channelDataGraphContainer} >
+      <View style={styles.chartHeader}>
+      <View style={styles.chartLeft}>
+        <Text>channel activity</Text>
+        <Text>livestream lifetime</Text>
+      </View>
+      <View style={styles.chartRight}>
+      </View>
+      </View>
+
+      {scale != 'undefined' && scaleX.tickFormat && <View style={styles.channelDataGraph}>
         <Surface width={this.props.width} height={this.props.height}>
-          <Group x={100} y={0}>
+          <Group x={50} y={0}>
             <Shape
               d={linePath}
               stroke="#000"
@@ -173,14 +182,15 @@ export default class ChannelDataGraph extends Component {
           </Group>
         </Surface>
 
-        <View key={'ticksX'}>
+        <View key={'ticksX'} style={styles.ticksXContainer}>
           {ticks != 'undefined' && ticks.length > 0 && ticks.map((tick, index) => {
             const tickStyles = {};
             tickStyles.width = TickWidth;
-            tickStyles.left = tick.x - (TickWidth / 2);
+            tickStyles.left = (tick.x + 50) - (TickWidth / 2);
+            console.log('ticksXContainer tickXFormat', tick)
             return (
               <Text key={index} style={[styles.tickLabelX, tickStyles]}>
-                {scale != 'undefined' && scaleX.tickFormat && tickXFormat(new Date(tick.datum.time * 1000))}
+                {scale != 'undefined' && scaleX.tickFormat && tick.datum.intervalPeriod}
               </Text>
             );
           })}
@@ -191,12 +201,12 @@ export default class ChannelDataGraph extends Component {
             const value = yAccessor(tick.datum)
             const tickStyles = {};
             tickStyles.width = TickWidth;
-            tickStyles.left = tick.x - Math.round(TickWidth * 0.5)
-            tickStyles.top = (tick.y + 2) - Math.round(TickWidth * 0.65)
+            tickStyles.left = (tick.x + 20) - Math.round(TickWidth * 0.5)
+            tickStyles.top = (tick.y + 25) - Math.round(TickWidth * 0.65)
             return (
               <View key={index} style={[styles.tickLabelY, tickStyles]}>
                 <Text style={styles.tickLabelYText}>
-                  {value}&deg;
+                  {value}
                 </Text>
               </View>
             );
@@ -208,7 +218,7 @@ export default class ChannelDataGraph extends Component {
             <View
               key={index}
               style={[styles.ticksYDot, {
-                left: tick.x,
+                left: tick.x + 49,
                 top: tick.y,
               }]}
             />
@@ -249,4 +259,19 @@ const styles = {
     backgroundColor: 'black',
     borderRadius: 100,
   },
+  channelDataGraphContainer: {
+    paddingTop: 10,
+    paddingBottom: 3,
+    justifyContent: 'flex-start',
+  },
+  channelDataGraph: {
+    justifyContent: 'flex-start',
+  },
+  chartHeader: {
+    height: 60,
+//    backgroundColor: 'green',
+  },
+  chartLeft: {
+//    flex: 1
+  }
 }
