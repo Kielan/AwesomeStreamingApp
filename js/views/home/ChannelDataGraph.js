@@ -145,7 +145,6 @@ export default class ChannelDataGraph extends Component {
   render() {
     const {
       yAccessor,
-      dataViewStore,
     } = this.props
     const {
       graphWidth,

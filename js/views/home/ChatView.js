@@ -12,24 +12,16 @@ import ChatMessage from './ChatMessage'
 class ChatView extends Component {
   constructor(props) {
     super(props)
-  }/*
-  async componentDidMount() {
-    try {
-      this.interval = pollMessagesService(this.props.homeViewStore.view.activeLiveChatId)
-      .then(messages => this.props.homeViewStore.setMessages(messages))
-    } catch (err) {
-      console.log('chatview err: ', err)
-    }
-  }*/
+  }
   render() {
     console.log('cChatView props messages: ', this.props.homeViewStore.messages)
     const { authStore, chatStore, homeViewStore } = this.props
-    const { messages } = homeViewStore
+    const { liveChatData } = homeViewStore
     return (
       <View style={styles.chatContainer} >
         <FlatList
          style={styles.messageList}
-         data={messages}
+         data={liveChatData.messagesList.slice(0)}
          renderItem={data => <ChatMessage data={data} />}
          keyExtractor={(item, index) => index.toString()}
         />

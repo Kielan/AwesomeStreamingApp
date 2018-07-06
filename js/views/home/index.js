@@ -4,7 +4,7 @@ import {
   View, Text, TouchableOpacity, Image,
 } from 'react-native'
 import { observer, inject } from 'mobx-react'
-import { toJS } from 'mobx'
+import { action, runInAction, toJS } from 'mobx'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import { LINE_GRAPH_DATA } from '../../constants'
 import { pollMessagesService, liveChatStepThroughPageTokens } from '../../services/chatService'
@@ -18,24 +18,24 @@ class Home extends Component {
   constructor(props) {
     super(props)
   }
-  async componentDidMount() {
-    try {
+  componentDidMount() {
       const { homeViewStore } = this.props
       console.log('homeWillReceiveProps...')
-      let wholePageProps = await liveChatStepThroughPageTokens(this.props.homeViewStore.view.activeLiveChatId)
-      console.log('homeWillReceiveProps: ', wholePageProps)
-      this.interval = pollMessagesService(this.props.homeViewStore.view.activeLiveChatId)
-      .then(messages => this.props.homeViewStore.setMessages(messages))
-
-      if (Array.isArray(toJS(this.props.homeViewStore.messagesLowercase)) && toJS(this.props.homeViewStore.messagesLowercase).length ) {
+      homeViewStore.initPollService()
+//      let wholePageProps = await liveChatStepThroughPageTokens(this.props.homeViewStore.view.activeLiveChatId)
+//      console.log('homeWillReceiveProps: ', wholePageProps)
+//      this.interval = await homeViewStore.initPollService()//pollMessagesService(this.props.homeViewStore.view.activeLiveChatId)
+//      .then(action(messages => this.props.homeViewStore.liveChatData.messagesList.set(messages)))
+//      .then((messages => this.props.homeViewStore.liveChatData.messagesList))
+//      if (Array.isArray(toJS(this.props.homeViewStore.messagesLowercase)) && toJS(this.props.homeViewStore.messagesLowercase).length ) {
         //      console.log('render home', createLiveStreamChannelActivityOverview(toJS(homeViewStore.messagesLowercase)))
-        let activityOveviewData = createLiveStreamChannelActivityOverview(toJS(this.props.homeViewStore.messagesLowercase))
-        this.props.dataViewStore.setStore('graphData', activityOveviewData)
+//        let activityOveviewData = createLiveStreamChannelActivityOverview(toJS(this.props.homeViewStore.messagesLowercase))
+//        this.props.dataViewStore.setStore('graphData', activityOveviewData)
 
-      }
-    } catch (err) {
-      console.log('homedidmount err: ', err)
-    }
+//      }
+  }
+  componentWillUnmount() {
+    homeViewStore.disposePollService()
   }
   render() {
     const { authStore, dataViewStore, homeViewStore, chatStore } = this.props

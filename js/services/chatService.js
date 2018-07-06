@@ -16,6 +16,7 @@ export function pollMessagesService(activeLiveChatId) {
           }
           return usefulObj
         })
+        console.log('pollmessageservice resolve: ', newMessages)
         resolve(newMessages)
       })
     }, 15000)

@@ -20,7 +20,7 @@ export default class MessagesResults extends Component {
       <View style={styles.chatContainer}>
         <FlatList
          style={styles.messageList}
-         data={messages}
+         data={messages.slice(0)}
          renderItem={data => <ChatMessage data={data} />}
          keyExtractor={(item, index) => index.toString()}
         />

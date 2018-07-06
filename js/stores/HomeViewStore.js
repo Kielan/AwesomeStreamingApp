@@ -1,5 +1,5 @@
 'use strict'
-import { observable, computed, action, reaction, toJS } from 'mobx'
+import { autorun, observable, computed, action, reaction, toJS } from 'mobx'
 import {default as $http} from 'axios'
 import { GOOGLE_KEY, YOUTUBE_API_URL } from '../constants'
 import { queryChat } from '../services/chatService'
@@ -7,116 +7,87 @@ import { createLiveStreamChannelActivityOverview } from '../services/d3Service'
 import DataViewStore from './DataViewStore'
 
 class HomeViewStore {
-  @observable view = {}
-  @observable messages = []
-  @observable messagesLowercase = []
+  constructor() {
+    autorun(() => {
+      console.log(this.liveChatData.messagesList.join(", "));
+    })
+  }
   @observable analyticsTab = {
     messagesSearchValue: ''
   }
-  reaction1 = reaction(
-      () => this.messagesLowercase.length,
-      length => {
-        console.log('react to length change reaction1')
-        let activityOveviewData = createLiveStreamChannelActivityOverview(toJS(this.messagesLowercase))
-        DataViewStore.setStore('graphData', activityOveviewData)
+  @observable liveChatData = {
+    messagesList: [],
+    messagesLowercase: [],
+  }
+  @observable chartData = {
+    messagesActivity: [],
+    activityPeak: 0,
+    activityFloor: 0,
+  }
+  @action initPollService() {
+    if (!this.fetchInterval) {
+      this.queryChat(this.view.activeLiveChatId).then((thenData) => {console.log('kielans first .thencaleld', thenData); return this.setMessagesData(thenData)}) // initial fetch
+      this.fetchInterval = setInterval(() => this.queryChat(this.view.activeLiveChatId).then((thenData) => {
+        console.log('kielans .thencaleld', thenData);
+        this.setMessagesData(thenData)
+      }), 12000)
+    }
+  }
+  // call from componentWillUnmount or whatever
+  @action disposePollService() {
+    if (this.fetchInterval) {
+      clearTimeout(this.fetchInterval);
+      this.fetchInterval = null;
+    }
+  }
+  @action setMessagesData(remoteChatResponse) {
+    const cleanedData = remoteChatResponse.data.items.map(item => {
+      const usefulObj = {
+        displayName: item.authorDetails.displayName,
+        profileImageUrl: item.authorDetails.profileImageUrl,
+        messageText: item.snippet.textMessageDetails.messageText,
+        publishedAtISO: item.snippet.publishedAt,
+        publishedAtSinceEpoch: new Date(item.snippet.publishedAt).getTime(),
       }
-  )
-  @computed get computedChatArchiveQuery() {
-    if(!this.analyticsTab.messagesSearchValue) {
-      return this.messages
-    }
-    const newMessages = []
-    if (this.analyticsTab.messagesSearchValue.includes('has:')) {
-      return this.messagesLowercase.filter(item =>
-        {
-          console.log('computed this.messages.filter', item)
-          if (item.displayName.includes(this.analyticsTab.messagesSearchValue)) {
-            return item
-          }
-        }
-      )
-    } else if (this.analyticsTab.messagesSearchValue.includes('from:')) {
-      const searchQuery = this.analyticsTab.messagesSearchValue.substr(6)
-      return this.messagesLowercase.filter(item =>
-        {
-          console.log('computed find by author', item)
-          if (item.displayName.includes(searchQuery)) {
-            return item
-          }
-        }
-      )
-    }
-
-  }
-  @action setMessages(newMessages) {
-    this.messages = newMessages
-    this.messagesLowercase = newMessages.map((message) => {
-      message.messageText = message.messageText.toLowerCase()
-      return message
+      return usefulObj
     })
+    const scopeChatArchiveLowerCase = cleanedData.map((item, key) => {
+      item.messageText = item.messageText.toLowerCase()
+      return item
+    })
+    console.log('scopeChatArchiveLowerCase => ', scopeChatArchiveLowerCase)
+    const chartDataOverView = createLiveStreamChannelActivityOverview(scopeChatArchiveLowerCase)
+    console.log('chartDataOverView => ', chartDataOverView)
+    this.chartData = chartDataOverView
+    this.liveChatData = {messagesList: cleanedData}
+    return
   }
-  @action.bound messagesSearch(e) {
-    console.log('messagesSearch action', e)
-    this.analyticsTab.messagesSearchValue = e
-  }
-  gatherLiveStream = async () => {
+  @action async queryChat(activeLiveChatId, pageTokenId) {
     try {
-        let popularVideo = await $http({
-          method: 'GET',
-          url: YOUTUBE_API_URL+'search/',
-          headers: '',
-          params: {
-            part: "snippet",
-            chart: "mostPopular",
-            eventType: "live",
-            type: "video",
-            key: GOOGLE_KEY
-          }
-        })
-        let snippetURL = popularVideo
-        console.log('popularVideo thumbnailurl', popularVideo.data.items[0].id.videoId, 'dont confand a ?', snippetURL)
-        this.view.mainThumbnailURL = popularVideo.data.items[0].snippet.thumbnails.high.url
-        this.view.mainThumbnailID = popularVideo.data.items[0].id.videoId
-    } catch (err) {
-      console.log('could not handle url: ', err)
-    }
-  }
-  getLiveStreamDetails = async () => {
-    try {
-      let liveStreamDetails = await $http({
+      let getChatMessages = await $http({
         method: 'GET',
-        url: YOUTUBE_API_URL+'videos/',
+        url: YOUTUBE_API_URL+'liveChat/messages/',
         headers: '',
         params: {
-          part: "snippet, liveStreamingDetails",
-          id: this.view.mainThumbnailID,
-          key: GOOGLE_KEY
+          part: "id, snippet, authorDetails",
+          liveChatId: activeLiveChatId,
+          ...pageTokenId != 'undefined' && { pageToken: pageTokenId },
+          maxResults: 2000,
+          key: GOOGLE_KEY,
         }
       })
-      console.log('liveStreamDetails', liveStreamDetails, liveStreamDetails.data.items[0])
-      this.view.activeLiveChatId = liveStreamDetails.data.items[0].liveStreamingDetails.activeLiveChatId
+      console.log('query chat: ', getChatMessages)
+      return getChatMessages
     } catch (err) {
       console.log('could not handle details url: ', err)
     }
   }
-  getChatMessages = async () => {
-    console.log('liveStreamChatMessages', this.view.activeLiveChatId)
-    try {
-      let getChatMessages = await queryChat()
-      console.log('liveStreamChatMessages', getChatMessages.data)
-      let messages = getChatMessages.data.items.map(item => {
-        let usefulObj = {
-          displayName: item.authorDetails.displayName,
-          profileImageUrl: item.authorDetails.profileImageUrl,
-          messageText: item.snippet.textMessageDetails.messageText,
-          publishedAtSinceEpoch: item.snippet.publishedAt,
-        }
-        return usefulObj
-      })
-      this.setMessages(messages)
-    } catch (err) {
-      console.log('could not get messages: ', err)
-    }
+  @action setStore(key, value) {
+    this[key] = { ...value }
+  }
+  @action.bound messagesSearch(e) {
+    console.log('messagesSearch action', e)
+    this.analyticsTab.messagesSearchValue = e
   }
 
 }

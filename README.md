@@ -17,10 +17,10 @@ react-native run-ios (android coming soon - soon!)
 - [x] Gather Streams from youtube api and find viewcount in schema
 - [x] Query chat for top video
 - [x] enable user to participate in chat
-- [ ] create another interface that will return all chat messages from a given username (i.e. filter for messages by name on a separate view).
+- [x] create another interface that will return all chat messages from a given username (i.e. filter for messages by name on a separate view).
 My only question is regarding the last spec, is creating another interface like a chat box for sending messages or a tabbed filter for users, I am assuming just an input box.
 ## Bonus/Second Sprint
-- [ ] calculate messages/second
+- [x] calculate messages/interval
 - [x] line chart
 - [ ] donut chart
 - [ ] gradient base colors to mix palette for mobile aesthetic theming

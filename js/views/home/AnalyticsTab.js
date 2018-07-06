@@ -18,16 +18,15 @@ export default class AnalyticsTab extends Component {
   render() {
     const { authStore, dataViewStore, homeViewStore, chatStore, data: graphData, } = this.props
     const graphProps = {}
-          graphProps.data = toJS(dataViewStore.graphData.messagesActivity)//graphData.daily.data
+          graphProps.data = homeViewStore.chartData.messagesActivity && homeViewStore.chartData.messagesActivity.length && homeViewStore.chartData.messagesActivity.slice(0) || []//graphData.daily.data
           graphProps.xAccessor = d => d.intervalPeriod
           graphProps.yAccessor = d => d.messagesPerInterval//d.temperatureMax
-
+          console.log('analyticsTab render', graphProps)
     return (
       <View style={styles.viewContainer}>
         {
-          typeof dataViewStore.graphData.messagesActivity !== 'undefined' &&
-          dataViewStore.graphData.messagesActivity.length > 0 &&
-          <ChannelDataGraph dataViewStore={dataViewStore} {...graphProps} />
+          graphProps.data && graphProps.data.length > 0 &&
+          <ChannelDataGraph {...graphProps} />
         }
         <View style={styles.viewInputContainer}>
           <View style={styles.viewInput}>
@@ -41,7 +40,7 @@ export default class AnalyticsTab extends Component {
           />
           </View>
         </View>
-        <MessagesResults messages={homeViewStore.computedChatArchiveQuery} filter={homeViewStore.analyticsTab.messagesSearchValue} />
+        <MessagesResults messages={homeViewStore.liveChatData.messagesList} filter={homeViewStore.analyticsTab.messagesSearchValue} />
       </View>
     )
   }
