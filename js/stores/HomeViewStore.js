@@ -9,9 +9,10 @@ import DataViewStore from './DataViewStore'
 class HomeViewStore {
   constructor() {
     autorun(() => {
-      console.log(this.liveChatData.messagesList.join(", "));
+      console.log('autorun', this.liveChatData.messagesList)
     })
   }
+  @observable view = {}
   @observable analyticsTab = {
     messagesSearchValue: ''
   }
@@ -26,9 +27,8 @@ class HomeViewStore {
   }
   @action initPollService() {
     if (!this.fetchInterval) {
-      this.queryChat(this.view.activeLiveChatId).then((thenData) => {console.log('kielans first .thencaleld', thenData); return this.setMessagesData(thenData)}) // initial fetch
+      this.queryChat(this.view.activeLiveChatId).then((thenData) => this.setMessagesData(thenData)) // initial fetch
       this.fetchInterval = setInterval(() => this.queryChat(this.view.activeLiveChatId).then((thenData) => {
-        console.log('kielans .thencaleld', thenData);
         this.setMessagesData(thenData)
       }), 12000)
     }
@@ -55,12 +55,63 @@ class HomeViewStore {
       item.messageText = item.messageText.toLowerCase()
       return item
     })
-    console.log('scopeChatArchiveLowerCase => ', scopeChatArchiveLowerCase)
+//    console.log('scopeChatArchiveLowerCase => ', scopeChatArchiveLowerCase)
     const chartDataOverView = createLiveStreamChannelActivityOverview(scopeChatArchiveLowerCase)
     console.log('chartDataOverView => ', chartDataOverView)
     this.chartData = chartDataOverView
     this.liveChatData = {messagesList: cleanedData}
     return
+  }
+  @action async homeViewTimeOut(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  @action async getLiveChatHistory(activeLiveChatId) {
+    try {
+      var queryNextTokenId = ''
+      var maxHistoryPages = 6
+      let historyPagePivot = 0
+      let nextQueryChatResponse = []
+      var cleanedData = []
+      let buildChatList = []
+      let queryChatResponse = await this.queryChat(this.view.activeLiveChatId)
+      if (queryChatResponse.data.nextPageToken) {
+        queryNextTokenId = queryChatResponse.data.nextPageToken
+      }
+      console.log('getLiveChatHistory queryChatResponse', queryChatResponse)
+      cleanedData = queryChatResponse.data.items.map(item => ({
+          displayName: item.authorDetails.displayName,
+          profileImageUrl: item.authorDetails.profileImageUrl,
+          messageText: item.snippet.textMessageDetails.messageText,
+          publishedAtISO: item.snippet.publishedAt,
+          publishedAtSinceEpoch: new Date(item.snippet.publishedAt).getTime(),
+      }))
+      buildChatList = [ ...cleanedData ]
+      console.log('queryNextTokenId', typeof queryNextTokenId, queryNextTokenId)
+      if (queryNextTokenId && historyPagePivot < maxHistoryPages) {
+        console.log('if queryNextTokenId', queryNextTokenId)
+        for (var i = 0; i < maxHistoryPages; ++i) {
+          await this.homeViewTimeOut(3085)
+          nextQueryChatResponse = await this.queryChat(this.view.activeLiveChatId, queryNextTokenId)
+
+          console.log('getLiveChatHistory nextQueryChatResponse', nextQueryChatResponse)
+
+          queryNextTokenId = nextQueryChatResponse.data.nextPageToken
+          cleanedData = nextQueryChatResponse.data.items.map(item => ({
+              displayName: item.authorDetails.displayName,
+              profileImageUrl: item.authorDetails.profileImageUrl,
+              messageText: item.snippet.textMessageDetails.messageText,
+              publishedAtISO: item.snippet.publishedAt,
+              publishedAtSinceEpoch: new Date(item.snippet.publishedAt).getTime(),
+          }))
+          buildChatList.push(cleanedData)
+          historyPagePivot += 1
+        }
+      }
+      historyPagePivot = 0
+      return buildChatList
+    } catch (err) {
+      console.log('getLiveChatHistory err', err)
+    }
   }
   @action async queryChat(activeLiveChatId, pageTokenId) {
     try {

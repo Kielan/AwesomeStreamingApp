@@ -98,10 +98,10 @@ export function createLineGraph({data, xAccessor, yAccessor, width, height}) {
 export function createLiveStreamChannelActivityOverview(liveChatList) {
   const liveGraphData = {}
   const sortedChatList = sortChatlist(liveChatList, 'publishedAtSinceEpoch')
-  console.log('createLiveStreamChannelActivityOverview sortedChatList', sortedChatList)
+//  console.log('createLiveStreamChannelActivityOverview sortedChatList', sortedChatList)
   //each index is an x point and value at that location is the yValue
   const plotChartValues = internalPlotDatumFactoryX(sortedChatList)
-  console.log('right before err publishedAtSinceEpoch', plotChartValues)
+//  console.log('right before err publishedAtSinceEpoch', plotChartValues)
   const activityPeak = plotChartValues[plotChartValues.length-1]//sortedChatList[sortedChatList.length-1]//reduceLiveChatActivityPeak(sortedChatList, 'publishedAtSinceEpoch')
   const activityFloor = plotChartValues[0]//reduceLiveChatActivityFloor(sortedChatList, 'publishedAtSinceEpoch')
 
@@ -122,13 +122,13 @@ export function createLiveStreamChannelActivityOverview(liveChatList) {
 }
 
 function sortChatlist(chatList, indexKey) {
-  console.log('sortChatlist args', chatList, indexKey)
+//  console.log('sortChatlist args', chatList, indexKey)
   return hoareQuickSort(chatList, indexKey)
 }
 function reduceLiveChatActivityPeak(liveChatList, evalIndex) {
   console.log('sortChatlist reduceLiveChatActivityPeak', liveChatList, evalIndex)
   return liveChatList.reduce((previousLargestNumber, currentLargestNumber) => {
-    console.log('sortChatlist reduce', previousLargestNumber, currentLargestNumber)
+//    console.log('sortChatlist reduce', previousLargestNumber, currentLargestNumber)
     return (currentLargestNumber[evalIndex] > previousLargestNumber[evalIndex]) ? currentLargestNumber[evalIndex] : previousLargestNumber[evalIndex]
   })
 }
@@ -180,7 +180,7 @@ function quicksort(array, indexKey, left, right) {
 }
 function hoareQuickSort(chatList, indexKey) {
   const quicksortResult = quicksort(chatList, indexKey)
-  console.log('hoareQuickSort, quicksortResult', quicksortResult)
+//  console.log('hoareQuickSort, quicksortResult', quicksortResult)
   resetCounters()
   return quicksortResult
 }
@@ -197,18 +197,18 @@ function swap(array, i, j) {
 }
 //must have publishedAt key
 function internalPlotDatumFactoryX(sortedList) {
-  console.log('internalPlotDatumFactoryX', sortedList)
+//  console.log('internalPlotDatumFactoryX', sortedList)
   const msIntervalConstant = 30000
   var xDatumStepMax = sortedList[0].publishedAtSinceEpoch + 3000
   var yDatumVal = 0
   var indexPivot = 0
   var cleanedList = []
-  console.log('inside internalPlotDatumFactoryX', sortedList[0], 'is = to', xDatumStepMax)
+//  console.log('inside internalPlotDatumFactoryX', sortedList[0], 'is = to', xDatumStepMax)
   let xDatumList = sortedList.map((chartItem) => {
-    console.log('map chartitem', chartItem)
+//    console.log('map chartitem', chartItem)
     if (chartItem.publishedAtSinceEpoch > xDatumStepMax) {
       cleanedList[indexPivot] = yDatumVal
-      console.log('inside internalPlotDatumFactoryX if opt 1 cleanedList', cleanedList, 'indexPivot', indexPivot, 'yDatumVal', yDatumVal)
+//      console.log('inside internalPlotDatumFactoryX if opt 1 cleanedList', cleanedList, 'indexPivot', indexPivot, 'yDatumVal', yDatumVal)
       indexPivot = indexPivot+1
       xDatumStepMax = chartItem.publishedAtSinceEpoch + msIntervalConstant
       yDatumVal = 0
