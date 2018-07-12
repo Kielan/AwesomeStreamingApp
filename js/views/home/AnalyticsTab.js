@@ -5,6 +5,7 @@ import {
 } from 'react-native'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
+import LinearGradient from 'react-native-linear-gradient'
 import { WINDOW_CONST, COLORS } from '../../constants'
 import ChannelDataGraph from './ChannelDataGraph'
 import MessagesResults from './MessagesResults'
@@ -49,7 +50,12 @@ const styles = {
   viewContainer: {
     flex: 1,
     height: WINDOW_CONST.height,
-    backgroundColor: COLORS.ORANGE,
+//    backgroundColor: COLORS.ORANGE,
+  },
+  linearGradient: {
+    flex: 1,
+    height: WINDOW_CONST.height,
+//    backgroundColor: COLORS.ORANGE,
   },
   viewInputContainer: {
     flex: 1,
@@ -58,7 +64,7 @@ const styles = {
     maxHeight: 40,
     paddingVertical: 6,
     paddingHorizontal: 6,
-    backgroundColor: COLORS.ORANGE,
+    backgroundColor: COLORS.ORANGE_SECOND,
   },
   viewInput: {
     flex: 1,
@@ -70,7 +76,7 @@ const styles = {
     minHeight: 28,
     maxHeight: 28,
     paddingHorizontal: 6,
-    backgroundColor: COLORS.ORANGE_SECOND,
+    backgroundColor: COLORS.ORANGE_THIRD,
     borderRadius: 25,
   }
 }

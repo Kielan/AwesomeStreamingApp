@@ -6,8 +6,9 @@ import Morph from 'art/morph/path'
 import * as scale from 'd3-scale'
 import * as shape from 'd3-shape'
 import * as d3Array from 'd3-array'
+import LinearGradient from 'react-native-linear-gradient'
 import * as graphUtils from '../../services/d3Service'
-import { WINDOW_CONST } from '../../constants'
+import { WINDOW_CONST, COLORS } from '../../constants'
 const d3 = {
   scale,
   shape,
@@ -33,7 +34,7 @@ export default class ChannelDataGraph extends Component {
   };
   static defaultProps = {
     width: Math.round(WINDOW_CONST.width * 0.9),
-    height: Math.round(WINDOW_CONST.height * 0.45),
+    height: Math.round(WINDOW_CONST.height * 0.30),
   };
   componentDidMount() {
     console.log('channeldatagraph componentDidMount', this.props)
@@ -161,7 +162,7 @@ export default class ChannelDataGraph extends Component {
     console.log('channeldata render ticks', ticks, 'scaleX', scaleX)
 
     return (
-      <View style={styles.channelDataGraphContainer} >
+      <LinearGradient colors={[COLORS.ORANGE_FOURTH, COLORS.ORANGE_THIRD, COLORS.ORANGE_SECOND, COLORS.ORANGE]} style={styles.channelDataGraphContainer}>
       <View style={styles.chartHeader}>
       <View style={styles.chartLeft}>
         <Text>channel activity</Text>
@@ -224,8 +225,7 @@ export default class ChannelDataGraph extends Component {
           ))}
         </View>
         </View>}
-
-      </View>
+      </LinearGradient>
     )
   }
 }

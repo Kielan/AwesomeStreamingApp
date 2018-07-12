@@ -32,12 +32,11 @@ const styles = {
   chatContainer: {
     flex: 1,
     width: WINDOW_CONST.width,
-    backgroundColor: COLORS.ORANGE,
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: COLORS.ORANGE,
   },
   messageList: {
-    backgroundColor: COLORS.ORANGE_SECOND,
     overflow: 'visible',
     width: WINDOW_CONST.width,
     minWidth: WINDOW_CONST.width,

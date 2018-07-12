@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import {
   View, Text, TouchableOpacity, Image, TextInput,
 } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 import { observer } from 'mobx-react'
 import { WINDOW_CONST, COLORS } from '../../constants'
 
@@ -11,8 +12,14 @@ export default class ChatMessage extends Component {
   render() {
     return (
       <View key={this.props.key} style={styles.chatMessageContainer}>
-        <View><Text style={styles.text} >{this.props.data.item.displayName}</Text></View>
-        <View><Text style={styles.text} >{this.props.data.item.messageText}</Text></View>
+        <View style={styles.chatAuthorView} >
+          <Image style={{width: 40, height: 40, borderRadius: 20}} source={{uri: this.props.data.item.profileImageUrl}} />
+        </View>
+        <View style={styles.chatMessageBody}>
+          <View><Text style={styles.text} >{this.props.data.item.displayName}</Text></View>
+          <View><Text style={styles.text} >{this.props.data.item.messageText}</Text></View>
+          <LinearGradient colors={[COLORS.ORANGE_SECOND, COLORS.ORANGE_THIRD]} style={styles.chatItemDivider} />
+        </View>
       </View>
     )
   }
@@ -27,16 +34,33 @@ const styles = {
     alignItems: 'center',
   },
   chatMessageContainer: {
-    minHeight: 20,
-    height: 20,
-    maxHeight: 20,
+    minHeight: 60,
+    height: 60,
+    maxHeight: 180,
     flex: 1,
     backgroundColor: 'transparent',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    marginTop: 10
+  },
+  chatAuthorView: {
+    justifyContent: 'flex-start',
+    paddingtop: 5,
+    paddingHorizontal: 10,
+  },
+  chatMessageBody: {
+    flexDirection: 'column',
+    flex: 1,
   },
   text: {
     color: COLORS.BLACK,
     alignSelf: 'flex-start',
+  },
+  chatItemDivider: {
+    marginTop: 15,
+    height: 2,
+    maxHeight: 2,
+    flex: 1,
+    borderRadius: 1,
+    marginRight: 60,
   }
 }
