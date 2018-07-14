@@ -29,8 +29,8 @@ export default class AnalyticsTab extends Component {
           graphProps.data && graphProps.data.length > 0 &&
           <ChannelDataGraph {...graphProps} />
         }
-        <View style={styles.viewInputContainer}>
-          <View style={styles.viewInput}>
+        <LinearGradient colors={[COLORS.ORANGE, COLORS.ORANGE_SECOND]} style={styles.viewInputContainer}>
+        <View style={styles.viewInput}>
           <TextInput
             placeholder={'search channel chat history'}
             autoCorrect={false}
@@ -40,7 +40,7 @@ export default class AnalyticsTab extends Component {
             autoCapitalize={'none'}
           />
           </View>
-        </View>
+        </LinearGradient>
         <MessagesResults messages={homeViewStore.liveChatData.messagesList} filter={homeViewStore.analyticsTab.messagesSearchValue} />
       </View>
     )
@@ -64,7 +64,7 @@ const styles = {
     maxHeight: 40,
     paddingVertical: 6,
     paddingHorizontal: 6,
-    backgroundColor: COLORS.ORANGE_SECOND,
+//    backgroundColor: COLORS.ORANGE_SECOND,
   },
   viewInput: {
     flex: 1,

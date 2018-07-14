@@ -34,7 +34,7 @@ const styles = {
     width: WINDOW_CONST.width,
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: COLORS.ORANGE,
+    backgroundColor: COLORS.ORANGE_SECOND,
   },
   messageList: {
     overflow: 'visible',

@@ -3,8 +3,10 @@ import React, { Component } from 'react'
 import {
   View, Text,
 } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 import { GoogleSignInButton } from './buttons'//      <GoogleSigninButton />
 import { observer, inject } from 'mobx-react'
+import { COLORS } from '../../constants'
 
 @inject('authStore') @observer
 class Login extends Component {
@@ -13,10 +15,9 @@ class Login extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Login!</Text>
+      <LinearGradient  colors={[COLORS.ORANGE_FOURTH, COLORS.ORANGE_THIRD, COLORS.ORANGE_SECOND, COLORS.ORANGE]} style={styles.container}>
         <GoogleSignInButton {...this.props.authStore} />
-      </View>
+      </LinearGradient>
     )
   }
 }
@@ -36,7 +37,7 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: "#343435",
+    backgroundColor: COLORS.ORANGE_THIRD,
   },
   text: {
     color: 'white',

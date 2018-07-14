@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { observer, inject } from 'mobx-react'
+import { COLORS, WINDOW_CONST } from '../../constants'
 import AuthStore from '../../stores/AuthStore'
 import HomeViewStore from '../../stores/HomeViewStore'
 
@@ -14,6 +15,8 @@ const styles = {
     alignItems: 'center',
     borderRadius: 50,
     paddingVertical: 15,
+    paddingHorizontal: 10,
+    marginTop: WINDOW_CONST.height / 2,
   },
   text: {
     fontSize: 13,
@@ -30,8 +33,8 @@ export class GoogleSignInButton extends React.Component {
     console.log('render this.props for authStore', this.props)
     return (
       <TouchableOpacity onPress={() => AuthStore.signInWithGoogle()}>
-        <View style={[styles.button, {backgroundColor: 'white'}]}>
-          <Text style={[styles.text, {color: 'black'}]}>
+        <View style={[styles.button, {backgroundColor: COLORS.ORANGE_THIRD}]}>
+          <Text style={[styles.text, {color: 'white'}]}>
             Log in with Google
           </Text>
         </View>

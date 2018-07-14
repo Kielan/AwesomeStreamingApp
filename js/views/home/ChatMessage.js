@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import {
   View, Text, TouchableOpacity, Image, TextInput,
 } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
 import { observer } from 'mobx-react'
 import { WINDOW_CONST, COLORS } from '../../constants'
 
@@ -16,9 +15,9 @@ export default class ChatMessage extends Component {
           <Image style={{width: 40, height: 40, borderRadius: 20}} source={{uri: this.props.data.item.profileImageUrl}} />
         </View>
         <View style={styles.chatMessageBody}>
-          <View><Text style={styles.text} >{this.props.data.item.displayName}</Text></View>
+          <View><Text style={styles.authorText} >{this.props.data.item.displayName}</Text></View>
           <View><Text style={styles.text} >{this.props.data.item.messageText}</Text></View>
-          <LinearGradient colors={[COLORS.ORANGE_SECOND, COLORS.ORANGE_THIRD]} style={styles.chatItemDivider} />
+          <View style={styles.chatItemDivider} />
         </View>
       </View>
     )
@@ -44,16 +43,23 @@ const styles = {
   },
   chatAuthorView: {
     justifyContent: 'flex-start',
-    paddingtop: 5,
+    paddingTop: 2,
     paddingHorizontal: 10,
   },
   chatMessageBody: {
     flexDirection: 'column',
     flex: 1,
+    marginRight: 60,
+  },
+  authorText: {
+      fontSize: 18,
+      color: COLORS.BLACK,
+      alignSelf: 'flex-start',
   },
   text: {
     color: COLORS.BLACK,
     alignSelf: 'flex-start',
+    fontSize: 14,
   },
   chatItemDivider: {
     marginTop: 15,
@@ -61,6 +67,6 @@ const styles = {
     maxHeight: 2,
     flex: 1,
     borderRadius: 1,
-    marginRight: 60,
-  }
+    color: COLORS.ORANGE_SECOND,
+  },
 }

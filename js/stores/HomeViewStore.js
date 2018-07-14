@@ -25,12 +25,20 @@ class HomeViewStore {
     activityPeak: 0,
     activityFloor: 0,
   }
+  nextPageToken = ''
   @action initPollService() {
     if (!this.fetchInterval) {
-      this.queryChat(this.view.activeLiveChatId).then((thenData) => this.setMessagesData(thenData)) // initial fetch
-      this.fetchInterval = setInterval(() => this.queryChat(this.view.activeLiveChatId).then((thenData) => {
-        this.setMessagesData(thenData)
-      }), 12000)
+      this.queryChat(this.view.activeLiveChatId).then((thenData) => {
+        var cleanMessages = this.cleanMessages(thenData.data.items)
+        this.nextPageToken = thenData.data.nextPageToken
+        console.log('init poll service', cleanMessages)
+        return this.setMessagesData(cleanMessages)
+      }) // initial fetch
+      this.fetchInterval = setInterval(() => this.queryChat(this.view.activeLiveChatId, this.nextPageToken).then((thenData) => {
+        this.nextPageToken = thenData.data.nextPageToken
+        console.log('interval poll service', [...this.liveChatData.messagesList.slice(0), ...this.cleanMessages(thenData.data.items)])
+        this.setMessagesData([...this.liveChatData.messagesList.slice(0), ...this.cleanMessages(thenData.data.items)])
+      }), 10000)
     }
   }
   // call from componentWillUnmount or whatever
@@ -40,8 +48,8 @@ class HomeViewStore {
       this.fetchInterval = null;
     }
   }
-  @action setMessagesData(remoteChatResponse) {
-    const cleanedData = remoteChatResponse.data.items.map(item => {
+  @action cleanMessages(uncleanChatResponse) {
+    return uncleanChatResponse.map(item => {
       const usefulObj = {
         displayName: item.authorDetails.displayName,
         profileImageUrl: item.authorDetails.profileImageUrl,
@@ -51,7 +59,9 @@ class HomeViewStore {
       }
       return usefulObj
     })
-    const scopeChatArchiveLowerCase = cleanedData.map((item, key) => {
+  }
+  @action setMessagesData(cleanedChatResponse) {
+    const scopeChatArchiveLowerCase = cleanedChatResponse.map((item, key) => {
       item.messageText = item.messageText.toLowerCase()
       return item
     })
@@ -59,7 +69,7 @@ class HomeViewStore {
     const chartDataOverView = createLiveStreamChannelActivityOverview(scopeChatArchiveLowerCase)
     console.log('chartDataOverView => ', chartDataOverView)
     this.chartData = chartDataOverView
-    this.liveChatData = {messagesList: cleanedData}
+    this.liveChatData = {messagesList: cleanedChatResponse}
     return
   }
   @action async homeViewTimeOut(ms) {
