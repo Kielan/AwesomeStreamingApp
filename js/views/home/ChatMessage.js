@@ -67,6 +67,6 @@ const styles = {
     maxHeight: 2,
     flex: 1,
     borderRadius: 1,
-    color: COLORS.ORANGE_SECOND,
+    backgroundColor: COLORS.ORANGE_FOURTH,
   },
 }
