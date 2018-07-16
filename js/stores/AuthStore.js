@@ -49,15 +49,25 @@ class AuthStore {
           }
         })
         let snippetURL = popularVideo
-        console.log('popularVideo thumbnailurl', popularVideo.data.items[0].id.videoId, 'dont confand a ?', snippetURL)
+        console.log('gatherLiveStream popularVideo thumbnailurl', snippetURL)
         HomeViewStore.view.mainThumbnailURL = popularVideo.data.items[0].snippet.thumbnails.high.url
-        HomeViewStore.view.mainThumbnailID = popularVideo.data.items[0].id.videoId
+        HomeViewStore.view.mainVideoId = popularVideo.data.items[0].id.videoId
     } catch (err) {
       console.log('could not handle url: ', err)
     }
   }
   getLiveStreamDetails = async () => {
-    try {
+    try {/*
+      let liveStreamDetails = await $http({
+        method: 'GET',
+        url: YOUTUBE_API_URL+'videos/',
+        headers: '',
+        params: {
+          part: "snippet, liveStreamingDetails",
+          id: HomeViewStore.view.mainThumbnailID,
+          key: GOOGLE_KEY
+        }
+      })*/
       let liveStreamDetails = await $http({
         method: 'GET',
         url: YOUTUBE_API_URL+'videos/',
@@ -68,10 +78,11 @@ class AuthStore {
           key: GOOGLE_KEY
         }
       })
-      console.log('liveStreamDetails', liveStreamDetails, liveStreamDetails.data.items[0])
+      console.log('liveStreamDetails', liveStreamDetails)
+      HomeViewStore.view.activeLiveStreamId = liveStreamDetails.data.items[0].id
       HomeViewStore.view.activeLiveChatId = liveStreamDetails.data.items[0].liveStreamingDetails.activeLiveChatId
     } catch (err) {
-      console.log('could not handle details url: ', err)
+      console.log('could not get livestreamdetails url: ', err)
     }
   }
 }

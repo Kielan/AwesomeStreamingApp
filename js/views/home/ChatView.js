@@ -12,7 +12,15 @@ import ChatMessage from './ChatMessage'
 class ChatView extends Component {
   constructor(props) {
     super(props)
-  }
+  }/*
+  async componentDidMount() {
+    try {
+      this.interval = pollMessagesService(this.props.homeViewStore.view.activeLiveChatId)
+      .then(messages => this.props.homeViewStore.setMessages(messages))
+    } catch (err) {
+      console.log('chatview err: ', err)
+    }
+  }*/
   render() {
     console.log('cChatView props messages: ', this.props.homeViewStore.messages)
     const { authStore, chatStore, homeViewStore } = this.props
@@ -83,6 +91,7 @@ const styles = {
     backgroundColor: COLORS.ORANGE,
     flexDirection: 'column',
     alignItems: 'center',
+    marginTop: (WINDOW_CONST.height*(9/16)),
   },
   chatMessageContainer: {
     minHeight: 20,

@@ -6,6 +6,7 @@ import {
 import { observer } from 'mobx-react'
 import { COLORS, WINDOW_CONST } from '../../constants'
 import ChatView from './ChatView'
+import VideoPlayer from './VideoPlayer'
 
 @observer
 class MostStreamedTab extends Component {
@@ -17,10 +18,14 @@ class MostStreamedTab extends Component {
   }
   render() {
     const { authStore, homeViewStore, chatStore } = this.props
+    const videoUrl = `https://www.youtube.com/embed/${homeViewStore.view.mainVideoId}?rel=0&autoplay=0&showinfo=0&controls=0`//`+homeViewStore.view.mainVideoId
+    console.log('MostStreamedTab videoUrl', videoUrl)
     return (
       <View style={styles.viewContainer}>
         <View style={styles.viewBody}>
-        <Image source={{ uri: homeViewStore.view.mainThumbnailURL }} style={styles.caption}></Image>
+        <VideoPlayer
+          video={videoUrl}
+        />
         <ChatView authStore={authStore} homeViewStore={homeViewStore} chatStore={chatStore} />
         </View>
       </View>
@@ -42,6 +47,7 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    flexDirection: 'column'
   },
   text: {
     color: 'white',
