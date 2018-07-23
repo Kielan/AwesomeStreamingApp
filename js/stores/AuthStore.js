@@ -50,8 +50,7 @@ class AuthStore {
         })
         let snippetURL = popularVideo
         console.log('gatherLiveStream popularVideo thumbnailurl', snippetURL)
-        HomeViewStore.view.mainThumbnailURL = popularVideo.data.items[0].snippet.thumbnails.high.url
-        HomeViewStore.view.mainVideoId = popularVideo.data.items[0].id.videoId
+        HomeViewStore.setVideoData(popularVideo.data.items[0])
     } catch (err) {
       console.log('could not handle url: ', err)
     }
@@ -74,7 +73,7 @@ class AuthStore {
         headers: '',
         params: {
           part: "snippet, liveStreamingDetails",
-          id: HomeViewStore.view.mainThumbnailID,
+          id: HomeViewStore.view.mainVideoId,
           key: GOOGLE_KEY
         }
       })

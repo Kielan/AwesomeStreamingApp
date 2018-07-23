@@ -2,7 +2,10 @@
 import React, { Component } from 'react'
 import { View, WebView} from 'react-native'
 import Video from 'react-native-video'
-import { WINDOW_CONST } from '../../constants'
+import YouTube from 'react-native-youtube'
+import { callPlayer, parseStartTime } from '../../services/videoPlayerService'
+import { WINDOW_CONST, GOOGLE_KEY } from '../../constants'
+import { MediaPlayer } from '../components/MediaPlayer/MediaPlayer'
 
 export default class VideoPlayer extends Component {
   constructor(props) {
@@ -26,12 +29,11 @@ export default class VideoPlayer extends Component {
       orientation: 'PORTRAIT',//nextProps.orientation
     })
   }
-  onLoad = (data) => {
-    console.log('On load fired!', data)
-    this.setState({duration: data.duration})
-  }
   onProgress = (data) => {
     this.setState({currentTime: data.currentTime})
+  }
+  ref = container => {
+    this.container = container
   }
   render() {
     ////'https://www.youtube.com/embed/ZZ5LpwO-An4?rel=0&autoplay=0&showinfo=0&controls=0'}}
@@ -51,11 +53,23 @@ export default class VideoPlayer extends Component {
           repeat={true}
           ref={'videoplayer'}
         />*/}
-        {<WebView
+        {/*<WebView
           style={styles.fullScreen}
           javaScriptEnabled={true}
+          allowsInlineMediaPlayback={true}
           source={{uri: this.props.video}}
-        />}
+          mediaPlaybackRequiresUserAction={false}
+          scrollEnabled={false}
+          startInLoadingState={true}
+        />*/}
+        {/*<YouTube
+          apiKey={GOOGLE_KEY}
+          videoId={this.props.video}
+          play={true}
+          />*/}
+        <MediaPlayer
+          url={this.props.video}
+        />
       </View>
     )
   }

@@ -22,6 +22,7 @@ class Home extends Component {
       const { homeViewStore } = this.props
       console.log('homeWillReceiveProps...')
       homeViewStore.initPollService()
+      homeViewStore.loadMediaPlayer()
 //      let wholePageProps = await liveChatStepThroughPageTokens(this.props.homeViewStore.view.activeLiveChatId)
 //      console.log('homeWillReceiveProps: ', wholePageProps)
 //      this.interval = await homeViewStore.initPollService()//pollMessagesService(this.props.homeViewStore.view.activeLiveChatId)
