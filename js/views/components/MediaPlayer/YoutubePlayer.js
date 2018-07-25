@@ -4,25 +4,30 @@ import { View, WebView} from 'react-native'
 import { MATCH_URL } from '../../../constants'
 import { callPlayer, parseStartTime } from '../../../services/videoPlayerService'
 //const YT = require('yt-player')
-
 export class YoutubePlayer extends Component {
+  constructor(props) {
+    super(props)
+    this.onWebViewLoad.bind(this)
+  }
   componentDidMount () {
-    this.player.load(this.props.url)
+//    this.load(this.props.url)
   }
   onWebViewLoad() {
-
+    console.log('onWebViewLoad load called')
   }
   callPlayer = callPlayer
-//  load (url) {//isReady
-//    const { playsinline, controls, config, onError } = this.props
-//    const id = url && url.match(MATCH_URL)[1]
-//    if (isReady) {
-//      this.player.cueVideoById({
-//        videoId: id,
-//        startSeconds: parseStartTime(url)
-//      })
-//      return
-//    }
+  load (url) {//isReady
+    console.log('youtubeplayer.bound load called')
+    const { playsinline, controls, config, onError } = this.props
+    const id = url && url.match(MATCH_URL)[1]
+    if (isReady) {
+      this.player.cueVideoById({
+        videoId: id,
+        startSeconds: parseStartTime(url)
+      })
+      return
+    }
+}
 /*    getSDK() {
       if (!this.container) return
       this.player = new YT.Player(this.container, {
@@ -61,6 +66,7 @@ export class YoutubePlayer extends Component {
       height: '100%',
       ...this.props.style
     }//// stores a reference to the webview object in the WebviewScreen wrapper, to use for postMessage
+    var webviewContent = require('./WebView.html')
     return (
       <View style={style}>
         <WebView
@@ -68,6 +74,7 @@ export class YoutubePlayer extends Component {
            ref={webview => {this.webViewRef = webview;}}
            source={webviewContent}
            onMessage={this.onWebViewMessage}
+           style={{flex: 1}}
          />
       </View>
       )

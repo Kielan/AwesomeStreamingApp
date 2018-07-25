@@ -67,9 +67,9 @@ export default class VideoPlayer extends Component {
           videoId={this.props.video}
           play={true}
           />*/}
-        <MediaPlayer
-          url={this.props.video}
-        />
+        {<MediaPlayer
+          url={'this.props.video'}
+        />}
       </View>
     )
   }
