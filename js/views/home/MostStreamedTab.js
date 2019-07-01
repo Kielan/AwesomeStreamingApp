@@ -18,7 +18,7 @@ class MostStreamedTab extends Component {
   }
   render() {
     const { authStore, homeViewStore, chatStore } = this.props
-    const videoUrl = `https://www.youtube.com/embed/${homeViewStore.view.mainVideoId}?rel=0&autoplay=0&showinfo=0&controls=0`//`+homeViewStore.view.mainVideoId
+    const videoUrl = `https://www.youtube.com/embed/${homeViewStore.view.mainVideoId}?rel=0&autoplay=1&showinfo=0&controls=1`//`+homeViewStore.view.mainVideoId
     console.log('MostStreamedTab videoUrl', videoUrl)
     return (
       <View style={styles.viewContainer}>

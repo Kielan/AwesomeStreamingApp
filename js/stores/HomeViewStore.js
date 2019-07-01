@@ -25,6 +25,11 @@ class HomeViewStore {
     activityPeak: 0,
     activityFloor: 0,
   }
+  @observable videoMediaData = {
+    url: '',
+    played: 0,
+    loaded: 0,
+  }
   nextPageToken = ''
   @action initPollService() {
     if (!this.fetchInterval) {
@@ -40,6 +45,19 @@ class HomeViewStore {
         this.setMessagesData([...this.liveChatData.messagesList.slice(0), ...this.cleanMessages(thenData.data.items)])
       }), 10000)
     }
+  }
+  @action setVideoData(dataItem) {
+    this.view.mainThumbnailURL = dataItem.snippet.thumbnails.high.url
+    this.view.mainVideoId = dataItem.id.videoId
+    this.loadMediaPlayer(dataItem)
+  }
+  @action loadMediaPlayer(dataItem) {
+    const videoUrl = `https://www.youtube.com/embed/${this.view.mainVideoId}?rel=0&autoplay=1&showinfo=0&controls=1`//`+homeViewStore.view.mainVideoId
+    this.videoMediaData = {
+       url: videoUrl,
+       played: 0,
+       loaded: 0
+     }
   }
   // call from componentWillUnmount or whatever
   @action disposePollService() {
